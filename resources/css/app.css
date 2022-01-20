@@ -1,3 +1,21 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+#hero {
+    background-image: repeating-linear-gradient(
+    135deg,
+        rgba(172, 176, 216, 0.08) 0px,
+        rgba(172, 176, 216, 0.08) 1px,
+        transparent 1px,
+        transparent 9px
+    ),
+    repeating-linear-gradient(
+        45deg,
+        rgba(172, 176, 216, 0.08) 0px,
+        rgba(172, 176, 216, 0.08) 1px,
+        transparent 1px,
+        transparent 9px
+    ),
+    linear-gradient(90deg, rgb(183, 70, 156), rgb(8, 33, 155));
+}

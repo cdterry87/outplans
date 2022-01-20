@@ -10,8 +10,11 @@ module.exports = {
 
     theme: {
         extend: {
+            spacing: {
+                120: "30rem",
+            },
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ['Outfit', ...defaultTheme.fontFamily.sans],
             },
         },
     },
