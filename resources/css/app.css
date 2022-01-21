@@ -2,6 +2,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+[x-cloak] {
+    display: none !important;
+}
+
 #hero {
     background-image: repeating-linear-gradient(
     135deg,

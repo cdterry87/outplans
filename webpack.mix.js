@@ -13,8 +13,9 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
+        // require('postcss-import'), // Removed so fontawesome can be imported in app.css
         require('tailwindcss'),
+        require('autoprefixer')
     ]);
 
 if (mix.inProduction()) {
