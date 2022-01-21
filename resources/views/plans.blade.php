@@ -1,3 +1,3 @@
 <x-app-layout>
-    Plan
+    My Plans
 </x-app-layout>

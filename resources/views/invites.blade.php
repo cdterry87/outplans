@@ -1,3 +1,3 @@
 <x-app-layout>
-    Plan
+    Invites
 </x-app-layout>
