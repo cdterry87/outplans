@@ -46,31 +46,7 @@
 
 <body class="font-sans antialiased">
     <div class="relative flex">
-        <div
-            class="
-                flex
-                md:items-stretch
-                h-screen
-                min-h-screen
-                w-full
-                md:w-72
-                absolute
-                md:static
-                left-0
-                transform
-                transition
-                duration-200
-                ease-in-out
-                z-40
-              "
-            :class="{
-                '-translate-x-full md:-translate-x-0': !isSidebarOpen
-              }"
-        >
-            <slot name="sidebar">
-                <x-bar.side @close-sidebar="onCloseSidebar" />
-            </slot>
-        </div>
+        <x-bar.side @close-sidebar="onCloseSidebar" />
         <div
             class="
                 bg-gray-100
