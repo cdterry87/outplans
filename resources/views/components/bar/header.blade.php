@@ -8,10 +8,6 @@
             <i class="fas fa-bell sm:hidden"></i>
             <span class="hidden sm:block"> Notifications </span>
         </a>
-        <a href="{{ route('profile.show') }}">
-            <i class="fas fa-cog sm:hidden"></i>
-            <span class="hidden sm:block"> Settings </span>
-        </a>
         <a
             class="md:hidden cursor-pointer"
             @click.prevent="$dispatch('toggle-sidebar')"

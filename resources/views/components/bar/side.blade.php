@@ -22,13 +22,11 @@
 >
     <div
         class="
-        flex flex-col
         bg-indigo-700
         border-r-8 border-indigo-900
         text-white
         w-full
-        p-8
-        gap-4">
+        p-8">
         <div class="flex justify-between text-2xl">
             <h1 class="font-bold"><a href="{{ route('home') }}">Outplans</a></h1>
             <div class="md:hidden">
@@ -38,7 +36,29 @@
                 ></i>
             </div>
         </div>
-        <hr />
+        <div class="flex flex-col gap-1 bg-white rounded mt-2 p-3 text-black">
+            <h2 class="text-sm">
+                Welcome,<br> <span class="text-lg font-bold">{{ Auth::user()->name }}</span>
+            </h2>
+            <div class="text-xs">
+                <a href="{{ route('profile.show') }}">My Profile</a>
+                <span class="mx-2">|</span>
+                <form
+                    method="POST"
+                    action="{{ route('logout') }}"
+                    class="inline-block"
+                >
+                    @csrf
+                    <a
+                        href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); this.closest('form').submit();"
+                    >
+                        {{ __('Log Out') }}
+                    </a>
+                </form>
+            </div>
+        </div>
+        <hr class="my-4" />
         <div class="flex flex-col h-full justify-between gap-4">
             <div>
                 <ul class="text-lg space-y-3">
