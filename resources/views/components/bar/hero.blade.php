@@ -1,7 +1,7 @@
 <div
     id="hero"
     class="
-      h-132
+      h-140
       border-b-8 border-indigo-900
       py-8
       px-8

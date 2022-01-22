@@ -81,6 +81,12 @@
                             </x-jet-button>
                         </div>
                     </form>
+
+                    <div class="text-center text-lg">
+                        <hr class="my-6">
+                        <a href="{{ route('register') }}">
+                            {{ __('Or Create an Account!') }}
+                    </div>
                 </div>
             </div>
         </x-bar.hero>
