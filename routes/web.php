@@ -11,9 +11,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/plans', function () {
-        return view('plans');
-    })->name('plans');
+    Route::get('/my-plans', function () {
+        return view('my-plans');
+    })->name('my-plans');
 
     Route::get('/invites', function () {
         return view('invites');

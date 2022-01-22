@@ -1,33 +1,50 @@
-<div class="w-full flex flex-col gap-1 text-black">
-    <label
-        class="text-xs uppercase"
-        :class="{ hidden: labelHidden }"
-        :for="id || name"
-    >
-        {{ label }}
+@props([
+    'name' => null,
+    'label' => null,
+    'id' => null,
+    'value' => null,
+    'placeholder' => null,
+    'fullWidth' => false,
+    'uppercase' => false,
+    'hiddenLabel' => false,
+])
+
+@php
+$containerClasses = [];
+$labelClasses = [];
+$inputClasses = [];
+
+if ($hiddenLabel) {
+    $labelClasses[] = 'sr-only';
+}
+if ($uppercase) {
+    $labelClasses[] = 'uppercase';
+}
+if ($fullWidth) {
+    $inputClasses[] = 'w-full';
+    $containerClasses[] = 'w-full';
+}
+
+$containerClasses = implode(' ', $containerClasses);
+$labelClasses = implode(' ', $labelClasses);
+$inputClasses = implode(' ', $inputClasses);
+@endphp
+
+<div class="{{ $containerClasses }}">
+    <label class="block text-sm font-bold mb-1 {{ $labelClasses }}">
+        {{ $label }}
     </label>
     <input
-        :name="name"
-        :id="id || name"
-        :type="type"
-        :placeholder="placeholder"
-        class="
-        w-full
-        rounded-lg
-        bg-white
-        border border-black
-        text-black
-        py-2
-        px-4
-        h-12
-      "
+        {{ $attributes->merge([
+            'type' => 'text',
+            'name' => $name,
+            'id' => $id ?? $name,
+            'value' => $name ? old($name, $value) : $value,
+            'class' => 'text-sm text-black border border-ra-gray-4 rounded focus:outline-none focus:bg-white focus:border-ra-gray-6 py-2 px-4 ' . $inputClasses,
+        ]) }}
+        placeholder="{{ $placeholder ?? $label }}"
     />
-    <div
-        class="text-red-400 text-xs"
-        :class="{
-        hidden: !error
-      }"
-    >
-        {{ error }}
-    </div>
+    @error($name)
+        <p class="text-ra-red text-xs mt-1">{{ $message }} </p>
+    @enderror
 </div>

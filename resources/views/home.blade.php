@@ -1,12 +1,14 @@
 <x-guest-layout>
     <div class="min-h-screen">
         <x-bar.hero>
-            <div class="flex items-center justify-end text-white">
-                <nav class="flex items-center gap-6">
-                    <a href="{{ route('login') }}"> Login </a>
-                    <a href="{{ route('register') }}"> Register </a>
-                </nav>
-            </div>
+            @guest
+                <div class="flex items-center justify-end text-white">
+                    <nav class="flex items-center gap-6">
+                        <a href="{{ route('login') }}"> Login </a>
+                        <a href="{{ route('register') }}"> Register </a>
+                    </nav>
+                </div>
+            @endguest
             <div
                 class="
               h-full

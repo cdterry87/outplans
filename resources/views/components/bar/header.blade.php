@@ -2,7 +2,9 @@
     x-data
     class="flex items-center justify-between px-8 py-4"
 >
-    <div>Page Title</div>
+    <div>
+        {{-- Page title / breadcrumbs can go here --}}
+    </div>
     <nav class="flex items-center text-xl sm:text-sm gap-4">
         <a href="{{ route('notifications') }}">
             <i class="fas fa-bell sm:hidden"></i>
