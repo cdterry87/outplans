@@ -19,8 +19,8 @@
             ">
                 <div class="flex flex-col gap-4 text-white">
                     <h1 class="text-6xl sm:text-8xl font-bold">Outplans</h1>
-                    <h2>
-                        Making and sharing plans with your friends has never been simpler!
+                    <h2 class="text-xl">
+                        Making plans with your friends has never been simpler!
                     </h2>
                     <div class="mt-8">
                         <x-element.button

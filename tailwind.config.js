@@ -12,6 +12,7 @@ module.exports = {
         extend: {
             spacing: {
                 120: "30rem",
+                132: "32rem"
             },
             fontFamily: {
                 sans: ['Outfit', ...defaultTheme.fontFamily.sans],
