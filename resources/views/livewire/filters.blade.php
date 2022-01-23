@@ -41,6 +41,7 @@
                 wire:change="updateShow"
             >
                 <option value="">Show</option>
+                <option value="6">6</option>
                 <option value="15">15</option>
                 <option value="30">30</option>
                 <option value="60">60</option>

@@ -14,7 +14,7 @@ class MyPlans extends Component
 
     // Filter options
     public $count, $search;
-    public $show = 15;
+    public $show = 6;
     public $sortBy = 'when';
     public $sortOrder = 'desc';
     public $sortOptions = [
@@ -25,6 +25,11 @@ class MyPlans extends Component
 
     // Model properties
     public $title, $location, $address, $when, $cost;
+
+    public function filterShow($value)
+    {
+        $this->show = $value;
+    }
 
     public function filterSortBy($value)
     {
