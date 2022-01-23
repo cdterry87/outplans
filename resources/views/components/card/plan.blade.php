@@ -3,6 +3,7 @@
     'invitedBy' => '',
     'statusMessage' => '',
     'isMine' => false,
+    'going' => false,
 ])
 
 <div class="w-full lg:w-1/2 xl:w-1/3 flex flex-col p-3">
@@ -29,20 +30,8 @@
         <div class="relative">
             @if (!$isMine)
                 <div class="absolute top-3 right-3 flex items-center gap-3">
-                    <x-element.icon
-                        v-if="notGoing || !statusMessage"
-                        color="bg-green-500"
-                        border-color="border-white"
-                        icon="fas fa-check-circle"
-                        icon-color="text-white"
-                    />
-                    <x-element.icon
-                        v-if="going || !statusMessage"
-                        color="bg-red-500"
-                        border-color="border-white"
-                        icon="fas fa-minus-circle"
-                        icon-color="text-white"
-                    />
+                    <x-element.plan-action going />
+                    <x-element.plan-action not-going />
                 </div>
             @endif
 
@@ -50,14 +39,12 @@
                 src="https://picsum.photos/300/200"
                 class="w-full h-40 object-cover"
             />
-
-            @if ($statusMessage)
-                <div
-                    :class="{
+            {{-- <div
+                :class="{
                             'bg-green-500': going,
                             'bg-red-500': notGoing
                         }"
-                    class="
+                class="
                         border-4 border-white
                         rounded-full
                         text-white
@@ -75,10 +62,9 @@
                         text-center
                         w-48
                     "
-                >
-                    {{ $statusMessage }}
-                </div>
-            @endif
+            >
+                {{ $going ? 'You are going!' : 'You aren\'t going.' }}
+            </div> --}}
         </div>
         <div class="flex flex-col gap-3 p-4 mt-2">
             <div class="font-bold">

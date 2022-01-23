@@ -85,7 +85,7 @@
                                     href="{{ route('invites') }}"
                                     class="block w-full hover:opacity-80"
                                 >
-                                    <i class="fas fa-user-plus mr-2"></i> Invites
+                                    <i class="fas fa-calendar-plus mr-2"></i> Invites
                                 </a>
                             </li>
                             <li>
@@ -102,6 +102,14 @@
                                     class="block w-full hover:opacity-80"
                                 >
                                     <i class="fas fa-users mr-2"></i> Friends
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="{{ route('friend-requests') }}"
+                                    class="block w-full hover:opacity-80"
+                                >
+                                    <i class="fas fa-user-plus mr-2"></i> Friend Requests
                                 </a>
                             </li>
                         </ul>

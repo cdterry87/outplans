@@ -1,3 +1,9 @@
+@props([
+    'user' => null,
+    'friend' => false,
+    'friendRequest' => false,
+])
+
 <div class="w-full lg:w-1/2 xl:w-1/3 flex flex-col p-3">
     <div
         class="
@@ -19,38 +25,39 @@
                 <a
                     href="#"
                     class="font-bold text-lg"
-                >John David Smith</a>
+                >
+                    John David Smith
+                </a>
                 <div class="text-indigo-700">
                     <div class="text-xs">Member since Fri Nov 13th, 2021</div>
                 </div>
             </div>
         </div>
-        <div v-if="friend">
+        @if ($friend)
             <div class="text-sm text-center text-gray-400">
                 Friends since Fri Nov 13th, 2021
             </div>
             <div class="flex justify-center mt-2">
-                <x-elements.button
+                <x-element.button
                     label="Remove Friend"
                     small
                     danger
                 />
             </div>
-        </div>
-        <div
-            v-if="friendRequest"
-            class="flex items-center justify-center gap-4"
-        >
-            <x-elements.button
-                label="Accept"
-                small
-                success
-            />
-            <x-elements.button
-                label="Decline"
-                small
-                danger
-            />
-        </div>
+        @endif
+        @if ($friendRequest)
+            <div class="flex items-center justify-center gap-4">
+                <x-element.button
+                    label="Accept"
+                    small
+                    success
+                />
+                <x-element.button
+                    label="Decline"
+                    small
+                    danger
+                />
+            </div>
+        @endif
     </div>
 </div>

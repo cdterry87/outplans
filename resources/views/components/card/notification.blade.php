@@ -1,18 +1,19 @@
+@props([
+    'notification' => null,
+    'read' => false,
+])
+
 <div
     class="
       flex flex-col
       gap-2
-      bg-gray-100
+      bg-white
       border border-gray-200
       shadow-md
       rounded-lg
       p-4
-    "
-    :class="{
-      'text-gray-600': !read,
-      'text-gray-400': read
-    }"
->
+      text-gray-600
+    ">
     <div
         class="
         flex
@@ -23,10 +24,11 @@
         pb-2
       ">
         <h4 class="block font-bold">
-            <i
-                class="fas mr-2"
-                :class="readClasses"
-            ></i>
+            @if ($read)
+                <i class="fas fa-envelope-open mr-2"></i>
+            @else
+                <i class="fas fa-envelope mr-2"></i>
+            @endif
             This is the message title
         </h4>
         <i
@@ -53,7 +55,9 @@
         <a
             href="#"
             class="block font-bold"
-        >Read More...</a>
+        >
+            Read More...
+        </a>
         <div>Yesterday</div>
     </div>
 </div>

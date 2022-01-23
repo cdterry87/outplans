@@ -3,7 +3,7 @@
     'icon' => '',
     'href' => '',
     'styles' => '',
-    'padding' => 'px-4 py-2',
+    'padding' => 'px-4',
     'small' => false,
     'primary' => false,
     'secondary' => false,
@@ -16,7 +16,7 @@
 @php
 $classes = [];
 
-$classes[] = $small ? 'text-xs' : 'text-md';
+$classes[] = $small ? 'text-xs leading-6' : 'text-md leading-9';
 
 if ($primary) {
     $classes[] = 'bg-indigo-700 text-white border border-indigo-900 hover:brightness-90';

@@ -27,6 +27,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return view('friends');
     })->name('friends');
 
+    Route::get('/friend-requests', function () {
+        return view('friend-requests');
+    })->name('friend-requests');
+
     Route::get('/notifications', function () {
         return view('notifications');
     })->name('notifications');
