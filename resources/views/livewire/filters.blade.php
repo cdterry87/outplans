@@ -1,6 +1,36 @@
-<div class="bg-gray-200 border border-gray-300 shadow-md rounded-lg p-4 my-6">
-    <h4 class="font-bold text-xl mb-4">Found {{ $totalResults }} Results</h4>
-    <div class="flex flex-col lg:flex-row lg:justify-between gap-2 lg:gap-4">
+<div
+    x-data="{ showFilters: false }"
+    class="bg-gray-200 border border-gray-300 shadow-md rounded-lg p-4 my-6"
+>
+    <div
+        class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm gap-2 sm:gap-4 font-bold select-none">
+        <h4>
+            Found
+            <span class="text-xl text-indigo-700 mx-2">{{ $totalResults }}</span>
+            Results
+        </h4>
+        <a
+            href="#"
+            @click.prevent="showFilters = !showFilters"
+        >
+            Show Filters <i
+                class="fas"
+                :class="showFilters ? 'fa-chevron-up' : 'fa-chevron-down'"
+            ></i>
+        </a>
+    </div>
+
+    <div
+        x-cloak
+        x-show="showFilters"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="flex flex-col lg:flex-row lg:justify-between gap-2 lg:gap-4 mt-4"
+    >
         <div class="flex flex-col lg:flex-row lg:items-center gap-2">
             <x-input.select
                 label="Show"

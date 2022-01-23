@@ -9,7 +9,7 @@
         gap-4
         lg:gap-8
       ">
-        <div class="w-full flex flex-row items-center gap-4 md:flex-col md:items-start lg:flex-row lg:items-center">
+        <div class="w-full flex flex-wrap items-center gap-4 md:items-start lg:flex-row lg:items-center">
             <h1 class="font-bold text-2xl">My Plans</h1>
             <x-element.button
                 label="New Plan"
