@@ -17,13 +17,16 @@
                 primary
             />
         </div>
-        <div class="w-full">
-            <livewire:filters
-                :sort-by="$sortBy"
-                :sort-order="$sortOrder"
-            />
-        </div>
     </div>
+
+    <livewire:filters
+        :show="$show"
+        :sort-by="$sortBy"
+        :sort-order="$sortOrder"
+        :sort-options="$sortOptions"
+        :total-results="$totalResults"
+    />
+
     <x-card.wrapper>
         @foreach ($plans as $plan)
             <x-card.plan

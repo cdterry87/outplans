@@ -10,12 +10,18 @@ class MyPlans extends Component
     use WithPagination;
 
     // Listeners
-    protected $listeners = ['filterSortBy', 'filterSortOrder', 'filterSearch'];
+    protected $listeners = ['filterShow', 'filterSortBy', 'filterSortOrder', 'filterSearch'];
 
     // Filter options
+    public $count, $search;
+    public $show = 15;
     public $sortBy = 'when';
     public $sortOrder = 'desc';
-    public $search;
+    public $sortOptions = [
+        'cost' => 'Cost',
+        'when' => 'Date',
+        'title' => 'Title',
+    ];
 
     // Model properties
     public $title, $location, $address, $when, $cost;
@@ -46,11 +52,16 @@ class MyPlans extends Component
             })
             ->with('user')
             ->withCount('attendees')
-            ->orderBy($this->sortBy, $this->sortOrder)
-            ->paginate(10);
+            ->orderBy($this->sortBy, $this->sortOrder ?? 'asc')
+            ->paginate($this->show);
+
+        $this->totalResults = $plans->total();
+        $this->emit('updateTotalResults', $this->totalResults);
 
         return view('livewire.my-plans', [
             'plans' => $plans,
+            'sortOptions' => $this->sortOptions,
+            'totalResults' => $this->totalResults,
         ]);
     }
 }

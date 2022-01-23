@@ -31,7 +31,7 @@ $selectClasses = implode(' ', $selectClasses);
 @endphp
 
 <div class="{{ $containerClasses }}">
-    <label class="text-sm font-bold uppercase mt-1 mb-1 {{ $labelClasses }}">
+    <label class="text-sm font-bold mt-1 mb-1 {{ $labelClasses }}">
         {{ $label }}
     </label>
     <select

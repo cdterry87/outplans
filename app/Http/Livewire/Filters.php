@@ -6,7 +6,14 @@ use Livewire\Component;
 
 class Filters extends Component
 {
-    public $sortBy, $sortOrder, $search;
+    protected $listeners = ['updateTotalResults'];
+
+    public $show, $sortBy, $sortOrder, $sortOptions, $totalResults;
+
+    public function updateShow()
+    {
+        $this->emit('filterShow', $this->show);
+    }
 
     public function updateSortBy()
     {
@@ -18,9 +25,9 @@ class Filters extends Component
         $this->emit('filterSortOrder', $this->sortOrder);
     }
 
-    public function updateSearch()
+    public function updateTotalResults($value)
     {
-        $this->emit('filterSearch', $this->search);
+        $this->totalResults = $value;
     }
 
     public function render()

@@ -31,12 +31,16 @@ $labelClasses = implode(' ', $labelClasses);
 $inputClasses = implode(' ', $inputClasses);
 @endphp
 
-<div class="{{ $containerClasses }}">
+<div
+    x-data="{ input: '' }"
+    class="{{ $containerClasses }}"
+>
     <label class="block text-sm font-bold mb-1 {{ $labelClasses }}">
         {{ $label }}
     </label>
     <div class="relative">
         <input
+            x-model="input"
             {{ $attributes->merge([
                 'type' => $type,
                 'name' => $name,
@@ -47,7 +51,14 @@ $inputClasses = implode(' ', $inputClasses);
             placeholder="{{ $placeholder ?? $label }}"
         />
         @if ($type === 'search')
-            <i class="fas fa-search absolute top-3 right-3 text-gray-400"></i>
+            <i
+                class="fas absolute top-3 right-3 text-gray-400"
+                :class="input ? 'fa-times cursor-pointer' : 'fa-search'"
+                @click="
+                    input = ''
+                    $wire.emit('filterSearch', '')
+                "
+            ></i>
         @endif
     </div>
     @error($name)
