@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function plans()
     {
-        return $this->hasMany(Plan::class)->orderBy('when');
+        return $this->hasMany(Plan::class);
     }
 
     public function plans_upcoming()
