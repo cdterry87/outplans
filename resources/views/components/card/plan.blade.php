@@ -72,27 +72,27 @@
                     href="#"
                     class="block text-lg"
                 >
-                    Title of the Big Event
+                    {{ $plan->title }}
                 </a>
                 @if (!$isMine)
                     <div class="text-gray-600 text-xs">
-                        by John David Smith
+                        by {{ $plan->user->name }}
                     </div>
                 @endif
             </div>
             <div class="flex flex-col gap-2 text-sm">
-                <div class="font-bold text-indigo-700">Fri, Dec 17, 10:00 PM</div>
+                <div class="font-bold text-indigo-700">{{ $plan->when }}</div>
                 <div class="text-gray-600">
-                    <strong>Location Name</strong>
-                    <p class="text-xs">3243 Players Club Cir, Memphis, TN, 38618</p>
+                    <strong>{{ $plan->location }}</strong>
+                    <p class="text-xs">{{ $plan->address }}</p>
                 </div>
                 <div class="flex items-center justify-between font-bold mt-2">
                     <div class="text-green-600">
                         Cost:
-                        <i class="fas fa-dollar-sign"></i>15
+                        <i class="fas fa-dollar-sign"></i>{{ $plan->cost }}
                     </div>
                     <div class="text-indigo-700">
-                        <i class="fas fa-users"></i> 24 Going
+                        <i class="fas fa-users"></i> {{ $plan->attendees_count }} Going
                     </div>
                 </div>
             </div>

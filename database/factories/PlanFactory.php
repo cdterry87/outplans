@@ -26,8 +26,13 @@ class PlanFactory extends Factory
             'user_id' => 1,
             'title' => ucwords($this->faker->words(rand(3, 5), true)),
             'location' => ucwords($this->faker->words(rand(2, 4), true)),
+            'address' => $this->faker->streetAddress,
+            'city' => ucwords($this->faker->city),
+            'state' => strtoupper($this->faker->stateAbbr),
+            'postal_code' => $this->faker->postcode,
             'description' => $this->faker->text(),
             'when' => $this->faker->dateTimeBetween('+1 week', '+2 years'),
+            'cost' => $this->faker->randomNumber(2),
             'published' => now()
         ];
     }

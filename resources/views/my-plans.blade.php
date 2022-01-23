@@ -24,15 +24,21 @@
                 name="sort"
                 id="sort"
                 hidden-label
-                full-width
             >
                 <option value="">Sort by</option>
-                <option value="ca">Cost (Asc)</option>
-                <option value="cd">Cost (Desc)</option>
-                <option value="da">Date (Asc)</option>
-                <option value="dd">Date (Desc)</option>
-                <option value="ga"># Going (Asc)</option>
-                <option value="gd"># Going (Desc)</option>
+                <option value="cost">Cost</option>
+                <option value="date">Date</option>
+                <option value="name">Name</option>
+            </x-input.select>
+            <x-input.select
+                label="Sort Type"
+                name="sort_type"
+                id="sort_type"
+                hidden-label
+            >
+                <option value="">Sort type</option>
+                <option value="asc">Asc</option>
+                <option value="desc">Desc</option>
             </x-input.select>
             <x-input.text
                 label="Search"

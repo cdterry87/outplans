@@ -43,6 +43,11 @@ class Plan extends Model
 
     public function getWhenAttribute($value)
     {
-        return Carbon::parse($value)->diffForHumans();
+        return Carbon::parse($value)->toDayDateTimeString();
+    }
+
+    public function getAddressAttribute($value)
+    {
+        return $value . ' ' . $this->city . ', ' . $this->state . ' ' . $this->postal_code;
     }
 }
