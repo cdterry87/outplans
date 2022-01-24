@@ -47,9 +47,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = ['created_at'];
+
     public function plans()
     {
         return $this->hasMany(Plan::class);
+    }
+
+    public function isMe()
+    {
+        return auth()->user()->id === $this->id;
+    }
+
+    public function isProfilePrivate()
+    {
+        return false; //Needs to be implemented with a private field in the users table
     }
 
     public function plans_upcoming()
@@ -157,5 +169,10 @@ class User extends Authenticatable
     public function messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->toFormattedDateString();
     }
 }

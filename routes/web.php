@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Livewire\Plan;
 use App\Http\Livewire\MyPlans;
+use App\Http\Livewire\PlanIndex;
+use App\Http\Livewire\UserIndex;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,9 +14,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('user/{user}', UserIndex::class)->name('user');
+
     Route::get('my-plans', MyPlans::class)->name('my-plans');
 
-    Route::get('plan/{id}', Plan::class)->name('plan');
+    Route::get('plan/{plan}', PlanIndex::class)->name('plan');
 
     Route::get('/invites', function () {
         return view('invites');
