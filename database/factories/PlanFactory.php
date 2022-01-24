@@ -30,7 +30,7 @@ class PlanFactory extends Factory
             'city' => ucwords($this->faker->city),
             'state' => strtoupper($this->faker->stateAbbr),
             'postal_code' => $this->faker->postcode,
-            'description' => $this->faker->text(),
+            'description' => $this->faker->paragraphs(rand(4, 6), true),
             'when' => $this->faker->dateTimeBetween('+1 week', '+2 years'),
             'cost' => $this->faker->randomNumber(2),
             'published' => now()

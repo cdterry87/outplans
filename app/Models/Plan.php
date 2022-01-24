@@ -30,6 +30,11 @@ class Plan extends Model
         return $this->hasMany(PlanInvite::class);
     }
 
+    public function isMine()
+    {
+        return auth()->user()->id === $this->user_id;
+    }
+
     public function getPrivacyAttribute($value)
     {
         $privacy_types = [
