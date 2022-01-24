@@ -69,7 +69,7 @@
         <div class="flex flex-col gap-3 p-4 mt-2">
             <div class="font-bold">
                 <a
-                    href="#"
+                    href="{{ route('plan', $plan->id) }}"
                     class="block text-lg"
                 >
                     {{ $plan->title }}

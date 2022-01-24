@@ -4,7 +4,7 @@
 >
     <div
         class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm gap-2 sm:gap-4 font-bold select-none">
-        <h4>
+        <h4 class="flex items-center">
             Found
             <span class="text-xl text-indigo-700 mx-2">{{ $totalResults }}</span>
             Results
