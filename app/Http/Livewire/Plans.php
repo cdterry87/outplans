@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class MyPlans extends Component
+class Plans extends Component
 {
     use WithPagination;
 
@@ -63,7 +63,7 @@ class MyPlans extends Component
         $this->totalResults = $plans->total();
         $this->emit('updateTotalResults', $this->totalResults);
 
-        return view('livewire.my-plans', [
+        return view('livewire.plans', [
             'plans' => $plans,
             'sortOptions' => $this->sortOptions,
             'totalResults' => $this->totalResults,

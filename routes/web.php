@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\MyPlans;
+use App\Http\Livewire\Plans;
 use App\Http\Livewire\PlanIndex;
 use App\Http\Livewire\UserIndex;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +16,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('user/{user}', UserIndex::class)->name('user');
 
-    Route::get('my-plans', MyPlans::class)->name('my-plans');
+    Route::get('plans', Plans::class)->name('plans');
 
     Route::get('plan/{plan}', PlanIndex::class)->name('plan');
 

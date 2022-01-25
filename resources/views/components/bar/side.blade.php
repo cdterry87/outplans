@@ -74,7 +74,7 @@
                             </li>
                             <li>
                                 <a
-                                    href="{{ route('my-plans') }}"
+                                    href="{{ route('plans') }}"
                                     class="block w-full hover:opacity-80"
                                 >
                                     <i class="fas fa-calendar-alt mr-2"></i> My Plans
