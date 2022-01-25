@@ -45,12 +45,17 @@
             full-width
             wire:model.defer="city"
         />
-        <x-input.text
+        <x-input.select
             label="State"
             name="state"
             full-width
             wire:model.defer="state"
-        />
+        >
+            <option value="">Select State</option>
+            @foreach ($states as $code => $value)
+                <option value="{{ $code }}">{{ $value }}</option>
+            @endforeach
+        </x-input.select>
         <x-input.text
             label="Postal Code"
             name="postal_code"
