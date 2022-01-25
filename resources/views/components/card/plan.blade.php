@@ -88,8 +88,12 @@
                 </div>
                 <div class="flex items-center justify-between font-bold mt-2">
                     <div class="text-green-600">
-                        Cost:
-                        <i class="fas fa-dollar-sign"></i>{{ $plan->cost }}
+                        @if ($plan->cost)
+                            Cost:
+                            <i class="fas fa-dollar-sign"></i>{{ $plan->cost }}
+                        @else
+                            Free
+                        @endif
                     </div>
                     <div class="text-indigo-700">
                         <i class="fas fa-users"></i> {{ $plan->attendees_count }} Going

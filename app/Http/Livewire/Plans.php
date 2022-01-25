@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Plan;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -20,32 +21,25 @@ class Plans extends Component
     public $sortOptions = [
         'cost' => 'Cost',
         'when' => 'Date',
+        'created_at' => 'Created',
         'title' => 'Title',
     ];
 
     // Model properties
-    public $title, $location, $address, $when, $cost;
+    public $plan_id;
+    public $title, $description, $location, $address, $city, $state, $postal_code, $when, $cost;
 
-    public function filterShow($value)
-    {
-        $this->show = $value;
-    }
-
-    public function filterSortBy($value)
-    {
-        $this->sortBy = $value;
-    }
-
-    public function filterSortOrder($value)
-    {
-        $this->sortOrder = $value;
-    }
-
-    public function filterSearch($value)
-    {
-        $this->search = $value;
-        $this->resetPage();
-    }
+    // Form properties
+    public $isModalOpen = false;
+    protected $rules = [
+        'title' => 'required|max:100',
+        'location' => 'required|max:50',
+        'address' => 'required|max:50',
+        'city' => 'required|max:50',
+        'state' => 'required|max:2',
+        'postal_code' => 'required|max:10',
+        'when' => 'required',
+    ];
 
     public function render()
     {
@@ -68,5 +62,93 @@ class Plans extends Component
             'sortOptions' => $this->sortOptions,
             'totalResults' => $this->totalResults,
         ]);
+    }
+
+    public function edit($id)
+    {
+        $plan = Plan::findOrFail($id);
+
+        $this->plan_id = $id;
+        $this->title = $plan->title;
+        $this->description = $plan->description;
+        $this->location = $plan->location;
+        $this->address = $plan->address;
+        $this->city = $plan->city;
+        $this->state = $plan->state;
+        $this->postal_code = $plan->postal_code;
+        $this->when = $plan->when;
+        $this->cost = $plan->cost;
+
+        $this->openModal();
+    }
+
+    public function submit()
+    {
+        $this->validate();
+
+        Plan::updateOrCreate(['id' => $this->plan_id], [
+            'user_id' => auth()->id(),
+            'title' => $this->title,
+            'description' => $this->description,
+            'location' => $this->location,
+            'address' => $this->address,
+            'city' => $this->state,
+            'state' => $this->state,
+            'postal_code' => $this->postal_code,
+            'when' => $this->when,
+            'cost' => $this->cost,
+        ]);
+
+        $this->count++;
+        $this->emit('updateCount', $this->count);
+
+        $this->closeModal();
+    }
+
+    public function filterShow($value)
+    {
+        $this->show = $value;
+    }
+
+    public function filterSortBy($value)
+    {
+        $this->sortBy = $value;
+    }
+
+    public function filterSortOrder($value)
+    {
+        $this->sortOrder = $value;
+    }
+
+    public function filterSearch($value)
+    {
+        $this->search = $value;
+        $this->resetPage();
+    }
+
+    public function openModal()
+    {
+        $this->isModalOpen = true;
+    }
+
+    public function closeModal()
+    {
+        $this->resetForm();
+        $this->resetValidation();
+        $this->isModalOpen = false;
+    }
+
+    public function resetForm()
+    {
+        $this->plan_id = null;
+        $this->title = null;
+        $this->description = null;
+        $this->location = null;
+        $this->address = null;
+        $this->city = null;
+        $this->state = null;
+        $this->postal_code = null;
+        $this->when = null;
+        $this->cost = null;
     }
 }

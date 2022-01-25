@@ -1,25 +1,52 @@
-<div class="w-full flex flex-col gap-1">
-    <label
-        class="text-xs uppercase"
-        :for="id || name"
-    >
-        {{ label }}
+@props([
+    'name' => null,
+    'label' => null,
+    'id' => null,
+    'value' => null,
+    'cols' => null,
+    'rows' => 4,
+    'fullWidth' => false,
+    'uppercase' => false,
+    'hiddenLabel' => false,
+])
+
+@php
+$containerClasses = [];
+$labelClasses = [];
+$inputClasses = [];
+
+if ($hiddenLabel) {
+    $labelClasses[] = 'sr-only';
+}
+if ($uppercase) {
+    $labelClasses[] = 'uppercase';
+}
+if ($fullWidth) {
+    $inputClasses[] = 'w-full';
+    $containerClasses[] = 'w-full';
+}
+
+$containerClasses = implode(' ', $containerClasses);
+$labelClasses = implode(' ', $labelClasses);
+$inputClasses = implode(' ', $inputClasses);
+@endphp
+
+<div class="{{ $containerClasses }}">
+    <label class="block text-sm font-bold mb-1 {{ $labelClasses }}">
+        {{ $label }}
     </label>
     <textarea
-        :name="name"
-        :id="id || name"
-        :placeholder="placeholder"
-        :rows="rows"
-        :cols="cols"
-        class="w-full rounded-lg bg-white border border-black text-black p-2"
+        {{ $attributes->merge([
+            'name' => $name,
+            'id' => $id ?? $name,
+            'cols' => $cols,
+            'rows' => $rows,
+            'class' => 'text-sm text-black border border-ra-gray-4 rounded focus:outline-none focus:bg-white focus:border-ra-gray-6 py-2 pl-4 pr-8 ' . $inputClasses,
+        ]) }}
     >
+        {{ $name ? old($name, $value) : $value }}
     </textarea>
-    <div
-        class="text-red-400 text-xs"
-        :class="{
-        hidden: !error
-      }"
-    >
-        {{ error }}
-    </div>
+    @error($name)
+        <p class="text-red-600 text-xs mt-1">{{ $message }} </p>
+    @enderror
 </div>
