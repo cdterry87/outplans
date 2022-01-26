@@ -1184,6 +1184,24 @@ select {
 .h-24 {
   height: 6rem;
 }
+.max-h-7 {
+  max-height: 1.75rem;
+}
+.max-h-32 {
+  max-height: 8rem;
+}
+.max-h-72 {
+  max-height: 18rem;
+}
+.max-h-64 {
+  max-height: 16rem;
+}
+.max-h-96 {
+  max-height: 24rem;
+}
+.max-h-120 {
+  max-height: 30rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1406,6 +1424,15 @@ select {
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+}
+.divide-indigo-700 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(67 56 202 / var(--tw-divide-opacity));
+}
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1417,6 +1444,9 @@ select {
 }
 .overflow-y-hidden {
   overflow-y: hidden;
+}
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 .truncate {
   overflow: hidden;

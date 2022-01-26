@@ -1,6 +1,6 @@
 <div>
-    {{-- <!-- private plan -->
-    <div
+    {{-- Private plan --}}
+    {{-- <div
         v-if="isPrivate"
         class="
         flex flex-col
@@ -16,10 +16,10 @@
         <p class="text-md">
             You will not be able to view this plan unless you are invited.
         </p>
-    </div>
-    <!-- end private plan --> --}}
+    </div> --}}
+    {{-- End private plan --}}
 
-    <!-- public plan -->
+    {{-- Public plan --}}
     <div
         class="
         rounded-lg
@@ -56,8 +56,13 @@
                     <div class="mt-6">
                         <span class="block text-2xl">{{ $plan->title }}</span>
                         <div class="font-normal text-gray-600 text-sm mt-2">
-                            by <a
-                                href="{{ route('user', ['user' => $plan->user->id]) }}">{{ $plan->user->name }}</a>
+                            by
+                            <a
+                                class="text-indigo-700 font-bold"
+                                href="{{ route('user', ['user' => $plan->user->id]) }}"
+                            >
+                                {{ $plan->user->name }}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -87,6 +92,7 @@
                             label="Invite Friends"
                             primary
                             full-width
+                            wire:click.prevent="openModal"
                         />
                     @endif
                 </div>
@@ -125,9 +131,21 @@
                 </div>
             </div>
             <div>
-                <!-- map goes here -->
+                {{-- Map goes here --}}
             </div>
         </div>
     </div>
-    <!-- end public plan -->
+    {{-- End public plan --}}
+
+    {{-- Friends Modal --}}
+    <div
+        x-cloak
+        x-data="{isModalOpen: @entangle('isModalOpen')}"
+        @keydown.window.escape="isModalOpen = false"
+    >
+        <x-modal.base>
+            <x-form.friends-invite :friends="$friends" />
+        </x-modal.base>
+    </div>
+    {{-- End Friends Modal --}}
 </div>
