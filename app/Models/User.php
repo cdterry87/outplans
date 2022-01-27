@@ -140,6 +140,10 @@ class User extends Authenticatable
             ->where('friends.user_id', '=', auth()->user()->id);
     }
 
+    public function uninvited_friends_with_details()
+    {
+    }
+
     public function friends_requests_sent_with_details()
     {
         return DB::table('users')

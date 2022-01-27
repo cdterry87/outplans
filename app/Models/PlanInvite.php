@@ -12,6 +12,8 @@ class PlanInvite extends Model
 
     protected $table = 'plans_invites';
 
+    protected $guarded = [];
+
     public function plan()
     {
         return $this->belongsTo(Plan::class);

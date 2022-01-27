@@ -121,7 +121,7 @@
                     <div>
                         <div class="flex flex-col gap-2 font-bold text-indigo-700">
                             <div>
-                                <i class="fas fa-user-plus"></i> {{ $invites_count }} Invited
+                                <i class="fas fa-user-plus"></i> {{ count($invites) }} Invited
                             </div>
                             <div>
                                 <i class="fas fa-users"></i> {{ $attendees_count }} Going
@@ -144,7 +144,10 @@
         @keydown.window.escape="isModalOpen = false"
     >
         <x-modal.base>
-            <x-form.friends-invite :friends="$friends" />
+            <x-form.friends-invite
+                :friends="$friends"
+                :invites="$invites"
+            />
         </x-modal.base>
     </div>
     {{-- End Friends Modal --}}

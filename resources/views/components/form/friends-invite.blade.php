@@ -1,14 +1,9 @@
-@props(['friends'])
+@props(['friends', 'invites'])
 
-<form wire:submit.prevent="submit">
+<form>
     <div class="flex items-center justify-between gap-4">
         <h2 class="text-3xl font-bold">Plan</h2>
         <div class="flex gap-2">
-            <x-element.button
-                label="Invite"
-                icon="fas fa-plus"
-                primary
-            />
             <x-element.button
                 label="Cancel"
                 secondary
@@ -22,11 +17,12 @@
             type="search"
             placeholder="Search for friends"
             full-width
+            wire:input.debounce.500ms="filterSearch($event.target.value)"
         />
     </div>
     @forelse ($friends as $friend)
         <div class="flex justify-between items-center gap-4 p-2">
-            <div class="text-lg w-full">
+            <div class="text-sm sm:text-lg w-full">
                 <label
                     class="block w-full"
                     for="friend_{{ $friend->id }}"
@@ -35,13 +31,21 @@
                 </label>
             </div>
             <div>
-                <x-input.checkbox
-                    large
-                    name="friends[]"
-                    id="friend_{{ $friend->id }}"
-                    value="{{ $friend->id }}"
-                    wire:model="selectedFriends"
-                />
+                @if (in_array($friend->id, $invites))
+                    <x-element.button
+                        label="Uninvite"
+                        danger
+                        small
+                        wire:click.prevent="uninvite({{ $friend->id }})"
+                    />
+                @else
+                    <x-element.button
+                        label="Invite"
+                        success
+                        small
+                        wire:click.prevent="invite({{ $friend->id }})"
+                    />
+                @endif
             </div>
         </div>
     @empty

@@ -34,8 +34,8 @@ $labelClasses = implode(' ', $labelClasses);
 
 <div class="flex items-center gap-2">
     <input
+        type="checkbox"
         {{ $attributes->merge([
-            'type' => 'checkbox',
             'name' => $name,
             'id' => $id,
             'value' => $value ?? 1,
