@@ -38,6 +38,12 @@
         :total-results="$totalResults"
     />
 
+    @if ($isDeleteConfirmationShown)
+        <div class="my-6">
+            <x-form.delete-confirmation message="Are you sure you want to delete this plan?" />
+        </div>
+    @endif
+
     <x-card.wrapper>
         @foreach ($plans as $plan)
             <x-card.plan

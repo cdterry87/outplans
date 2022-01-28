@@ -31,6 +31,7 @@ class Plans extends Component
 
     // Form properties
     public $isModalOpen = false;
+    public $isDeleteConfirmationShown = false;
     protected $rules = [
         'title' => 'required|max:100',
         'location' => 'required|max:100',
@@ -86,8 +87,6 @@ class Plans extends Component
     {
         $this->validate();
 
-        // dd($this->address, $this->city, $this->state);
-
         Plan::updateOrCreate(['id' => $this->plan_id], [
             'user_id' => auth()->id(),
             'title' => $this->title,
@@ -105,6 +104,23 @@ class Plans extends Component
         $this->emit('updateCount', $this->count);
 
         $this->closeModal();
+    }
+
+    public function deleteConfirmation($id)
+    {
+        $this->plan_id = $id;
+        $this->isDeleteConfirmationShown = true;
+    }
+
+    public function deleteCancellation()
+    {
+        $this->plan_id = null;
+        $this->isDeleteConfirmationShown = false;
+    }
+
+    public function delete()
+    {
+        Plan::find($this->plan_id)->delete();
     }
 
     public function filterShow($value)

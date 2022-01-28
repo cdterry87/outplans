@@ -38,9 +38,16 @@
                     <x-element.button
                         label="Edit"
                         icon="fas fa-edit"
-                        primary
+                        success
                         small
                         wire:click.prevent="edit({{ $plan->id }})"
+                    />
+                    <x-element.button
+                        label="Delete"
+                        icon="fas fa-trash"
+                        danger
+                        small
+                        wire:click.prevent="deleteConfirmation({{ $plan->id }})"
                     />
                 </div>
             @endif
