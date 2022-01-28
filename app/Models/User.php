@@ -134,7 +134,8 @@ class User extends Authenticatable
                 'users.id',
                 'users.name',
                 'users.email',
-                'users.created_at'
+                'users.created_at',
+                'friends.created_at as friended_at',
             )
             ->join('friends', 'friends.friend_user_id', 'users.id')
             ->where('friends.user_id', '=', auth()->user()->id);

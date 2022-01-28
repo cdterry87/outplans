@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Friends;
 use App\Http\Livewire\Plans;
 use App\Http\Livewire\PlanIndex;
 use App\Http\Livewire\UserIndex;
@@ -28,9 +29,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return view('attended');
     })->name('attended');
 
-    Route::get('/friends', function () {
-        return view('friends');
-    })->name('friends');
+    Route::get('friends', Friends::class)->name('friends');
 
     Route::get('/friend-requests', function () {
         return view('friend-requests');

@@ -1,8 +1,4 @@
-@props([
-    'user' => null,
-    'friend' => false,
-    'friendRequest' => false,
-])
+@props(['user', 'friend' => false, 'friendRequest' => false])
 
 <div class="w-full lg:w-1/2 xl:w-1/3 flex flex-col p-3">
     <div
@@ -26,22 +22,23 @@
                     href="#"
                     class="font-bold text-lg"
                 >
-                    John David Smith
+                    {{ $user->name }}
                 </a>
                 <div class="text-indigo-700">
-                    <div class="text-xs">Member since Fri Nov 13th, 2021</div>
+                    <div class="text-xs">Member since {{ $user->created_at }}</div>
                 </div>
             </div>
         </div>
         @if ($friend)
             <div class="text-sm text-center text-gray-400">
-                Friends since Fri Nov 13th, 2021
+                Friends since {{ $user->friended_at }}
             </div>
             <div class="flex justify-center mt-2">
                 <x-element.button
                     label="Remove Friend"
                     small
                     danger
+                    wire:click.prevent="deleteConfirmation({{ $user->id }})"
                 />
             </div>
         @endif
@@ -51,11 +48,13 @@
                     label="Accept"
                     small
                     success
+                    wire:click.prevent="acceptFriendRequest({{ $user->id }})"
                 />
                 <x-element.button
                     label="Decline"
                     small
                     danger
+                    wire:click.prevent="declineFriendRequest({{ $user->id }})"
                 />
             </div>
         @endif

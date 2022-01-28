@@ -144,7 +144,7 @@
         @keydown.window.escape="isModalOpen = false"
     >
         <x-modal.base>
-            <x-form.friends-invite
+            <x-form.invite-friends
                 :friends="$friends"
                 :invites="$invites"
             />
