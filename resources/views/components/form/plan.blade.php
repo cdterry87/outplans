@@ -24,27 +24,27 @@
         full-width
         wire:model.defer="title"
     />
+    <x-input.text
+        label="Location Name"
+        name="location"
+        full-width
+        wire:model.defer="location"
+    />
     <div class="flex flex-col sm:flex-row gap-4">
-        <x-input.text
-            label="Location Name"
-            name="location"
-            full-width
-            wire:model.defer="location"
-        />
         <x-input.text
             label="Address"
             name="address"
             full-width
             wire:model.defer="address"
         />
-    </div>
-    <div class="flex flex-col sm:flex-row gap-4">
         <x-input.text
             label="City"
             name="city"
             full-width
             wire:model.defer="city"
         />
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4">
         <x-input.select
             label="State"
             name="state"

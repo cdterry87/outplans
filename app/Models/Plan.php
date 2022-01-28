@@ -53,8 +53,8 @@ class Plan extends Model
         return Carbon::parse($value)->toDayDateTimeString();
     }
 
-    public function getAddressAttribute($value)
+    public function getFullAddress()
     {
-        return $value . ' ' . $this->city . ', ' . $this->state . ' ' . $this->postal_code;
+        return $this->address . ' ' . $this->city . ', ' . $this->state . ' ' . $this->postal_code;
     }
 }

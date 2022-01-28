@@ -21,8 +21,8 @@ class CreatePlansTable extends Migration
                 ->onDelete('cascade');
             $table->string('title', 100);
             $table->text('description');
-            $table->string('location', 50);
-            $table->string('address', 50);
+            $table->string('location', 100);
+            $table->string('address', 100);
             $table->string('city', 50);
             $table->string('state', 2);
             $table->string('postal_code', 10);

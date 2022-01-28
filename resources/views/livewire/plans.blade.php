@@ -42,7 +42,7 @@
         @foreach ($plans as $plan)
             <x-card.plan
                 :plan="$plan"
-                is-mine
+                can-edit
             />
         @endforeach
     </x-card.wrapper>

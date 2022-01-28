@@ -13,8 +13,7 @@
     </div>
     <hr class="my-4">
     <div class="w-full my-4 px-2">
-        <x-input.text
-            type="search"
+        <x-input.search
             placeholder="Search for friends"
             full-width
             wire:input.debounce.500ms="filterSearch($event.target.value)"

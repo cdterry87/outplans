@@ -2,8 +2,8 @@
     'plan' => null,
     'invitedBy' => '',
     'statusMessage' => '',
-    'isMine' => false,
     'going' => false,
+    'canEdit' => false,
 ])
 
 <div class="w-full lg:w-1/2 xl:w-1/3 flex flex-col p-3">
@@ -28,13 +28,22 @@
 
     <div class="bg-white border border-gray-100 rounded-b-lg shadow-md">
         <div class="relative">
-            @if (!$isMine)
+            @if (!$plan->isMine())
                 <div class="absolute top-3 right-3 flex items-center gap-3">
                     <x-element.plan-action going />
                     <x-element.plan-action not-going />
                 </div>
+            @elseif($plan->isMine() && $canEdit)
+                <div class="absolute top-3 right-3 flex items-center gap-3">
+                    <x-element.button
+                        label="Edit"
+                        icon="fas fa-edit"
+                        primary
+                        small
+                        wire:click.prevent="edit({{ $plan->id }})"
+                    />
+                </div>
             @endif
-
             <img
                 src="https://picsum.photos/300/200"
                 class="w-full h-40 object-cover"
@@ -74,7 +83,7 @@
                 >
                     {{ $plan->title }}
                 </a>
-                @if (!$isMine)
+                @if (!$plan->isMine())
                     <div class="text-gray-600 text-xs">
                         by {{ $plan->user->name }}
                     </div>
@@ -84,7 +93,7 @@
                 <div class="font-bold text-indigo-700">{{ $plan->when }}</div>
                 <div class="text-gray-600">
                     <strong>{{ $plan->location }}</strong>
-                    <p class="text-xs">{{ $plan->address }}</p>
+                    <p class="text-xs">{{ $plan->getFullAddress() }}</p>
                 </div>
                 <div class="flex items-center justify-between font-bold mt-2">
                     <div class="text-green-600">

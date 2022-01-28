@@ -11,7 +11,7 @@ class Plans extends Component
     use WithPagination;
 
     // Listeners
-    protected $listeners = ['filterShow', 'filterSortBy', 'filterSortOrder', 'filterSearch'];
+    protected $listeners = ['edit', 'filterShow', 'filterSortBy', 'filterSortOrder', 'filterSearch'];
 
     // Filter options
     public $count, $search;
@@ -33,8 +33,8 @@ class Plans extends Component
     public $isModalOpen = false;
     protected $rules = [
         'title' => 'required|max:100',
-        'location' => 'required|max:50',
-        'address' => 'required|max:50',
+        'location' => 'required|max:100',
+        'address' => 'required|max:100',
         'city' => 'required|max:50',
         'state' => 'required|max:2',
         'postal_code' => 'required|max:10',
@@ -86,13 +86,15 @@ class Plans extends Component
     {
         $this->validate();
 
+        // dd($this->address, $this->city, $this->state);
+
         Plan::updateOrCreate(['id' => $this->plan_id], [
             'user_id' => auth()->id(),
             'title' => $this->title,
             'description' => $this->description,
             'location' => $this->location,
             'address' => $this->address,
-            'city' => $this->state,
+            'city' => $this->city,
             'state' => $this->state,
             'postal_code' => $this->postal_code,
             'when' => $this->when,
