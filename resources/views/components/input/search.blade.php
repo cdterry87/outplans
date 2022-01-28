@@ -1,19 +1,30 @@
 @props([
+    'label' => null,
     'id' => null,
     'placeholder' => null,
     'fullWidth' => false,
+    'hiddenLabel' => false,
+    'uppercase' => false,
 ])
 
 @php
 $containerClasses = [];
+$labelClasses = [];
 $inputClasses = [];
 
+if ($hiddenLabel) {
+    $labelClasses[] = 'sr-only';
+}
+if ($uppercase) {
+    $labelClasses[] = 'uppercase';
+}
 if ($fullWidth) {
     $inputClasses[] = 'w-full';
     $containerClasses[] = 'w-full';
 }
 
 $containerClasses = implode(' ', $containerClasses);
+$labelClasses = implode(' ', $labelClasses);
 $inputClasses = implode(' ', $inputClasses);
 @endphp
 
@@ -21,6 +32,9 @@ $inputClasses = implode(' ', $inputClasses);
     x-data="{ input: '' }"
     class="{{ $containerClasses }}"
 >
+    <label class="block text-sm font-bold mb-1 {{ $labelClasses }}">
+        {{ $label }}
+    </label>
     <div class="relative">
         <input
             x-model="input"

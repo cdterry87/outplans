@@ -75,7 +75,7 @@
 
         </div>
 
-        <x-input.text
+        <x-input.search
             label="Search"
             type="search"
             placeholder="Search for plans..."
