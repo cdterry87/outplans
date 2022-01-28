@@ -121,6 +121,7 @@ class Plans extends Component
     public function delete()
     {
         Plan::find($this->plan_id)->delete();
+        $this->isDeleteConfirmationShown = false;
     }
 
     public function filterShow($value)

@@ -20,7 +20,9 @@ class CreateMessagesTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('plan_id')
-                ->constrained('plans');
+                ->constrained('plans')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->text('text');
             $table->timestamps();
         });
