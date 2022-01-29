@@ -12,6 +12,8 @@ class FriendRequest extends Model
 
     protected $table = 'friends_requests';
 
+    protected $guarded = [];
+
     public function user()
     {
         return $this->belongsTo(User::class);

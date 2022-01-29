@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use App\Models\Friend;
+use App\Models\FriendRequest;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -23,14 +25,17 @@ class Friends extends Component
         'created_at' => 'Friends Since',
     ];
 
+    // Friend search/add friend properties
     public $friend_id;
-    public $email;
+    public $friend_email, $friend_name;
+    public $isSearchComplete = false;
 
     // Form properties
     public $isModalOpen = false;
     public $isDeleteConfirmationShown = false;
-    protected $rules = [
-        'email' => 'required|email',
+
+    protected $messages = [
+        'friend_id.unique' => 'You have already sent a friend request to this user.',
     ];
 
     public function render()
@@ -51,6 +56,45 @@ class Friends extends Component
             'sortOptions' => $this->sortOptions,
             'totalResults' => $this->totalResults,
         ]);
+    }
+
+    public function friendSearch()
+    {
+        $this->validate([
+            'friend_email' => 'required|email',
+        ]);
+
+        $friend = User::where('email', $this->friend_email)->first();
+
+        if ($friend) {
+            $this->friend_id = $friend->id;
+            $this->friend_name = $friend->name;
+        }
+
+        $this->isSearchComplete = true;
+    }
+
+    public function addFriend()
+    {
+        $this->validate([
+            'friend_id' => 'required|exists:users,id|unique:friends_requests,requested_user_id,' . $this->friend_id . ',user_id',
+        ]);
+
+        FriendRequest::create([
+            'user_id' => auth()->user()->id,
+            'requested_user_id' => $this->friend_id,
+        ]);
+
+        session()->flash('success-message', 'Friend request sent!');
+
+        $this->resetForm();
+        $this->isSearchComplete = false;
+    }
+
+    public function cancelAddFriend()
+    {
+        $this->isSearchComplete = false;
+        $this->resetForm();
     }
 
     public function filterShow($value)
@@ -89,7 +133,8 @@ class Friends extends Component
     public function resetForm()
     {
         $this->friend_id = null;
-        $this->email = null;
+        $this->friend_email = null;
+        $this->friend_name = null;
     }
 
     public function deleteConfirmation($id)
