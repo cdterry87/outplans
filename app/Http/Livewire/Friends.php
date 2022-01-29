@@ -85,7 +85,7 @@ class Friends extends Component
             'requested_user_id' => $this->friend_id,
         ]);
 
-        session()->flash('success-message', 'Friend request sent!');
+        session()->flash('success-message', 'Friend request sent to ' . $this->friend_name . '!');
 
         $this->resetForm();
         $this->isSearchComplete = false;
