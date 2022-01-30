@@ -45,12 +45,16 @@
     @endif
 
     <x-card.wrapper>
-        @foreach ($friends as $friend)
+        @forelse ($friends as $friend)
             <x-card.user
                 :user="$friend"
                 friend
             />
-        @endforeach
+        @empty
+            <x-card.empty>
+                You do not currently have any friends.
+            </x-card.empty>
+        @endforelse
     </x-card.wrapper>
 
     <div class="mt-6">

@@ -24,16 +24,20 @@
                 >
                     {{ $user->name }}
                 </a>
-                <div class="text-indigo-700">
-                    <div class="text-xs">Member since {{ $user->created_at }}</div>
+                <div class="text-sm text-gray-700">
+                    {{ $user->email }}
+                </div>
+                <div class="text-indigo-700 text-xs">
+                    @if ($friend)
+                        Friends since {{ $user->friended_at }}
+                    @else
+                        Member since {{ $user->created_at }}
+                    @endif
                 </div>
             </div>
         </div>
         @if ($friend)
-            <div class="text-sm text-center text-gray-400">
-                Friends since {{ $user->friended_at }}
-            </div>
-            <div class="flex justify-center mt-2">
+            <div class="flex justify-center mt-4">
                 <x-element.button
                     label="Remove Friend"
                     small
@@ -51,10 +55,10 @@
                     wire:click.prevent="acceptFriendRequest({{ $user->id }})"
                 />
                 <x-element.button
-                    label="Decline"
+                    label="Delete"
                     small
                     danger
-                    wire:click.prevent="declineFriendRequest({{ $user->id }})"
+                    wire:click.prevent="deleteConfirmation({{ $user->id }})"
                 />
             </div>
         @endif

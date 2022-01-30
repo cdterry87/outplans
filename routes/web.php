@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Livewire\Friends;
 use App\Http\Livewire\Plans;
+use App\Http\Livewire\Friends;
 use App\Http\Livewire\PlanIndex;
 use App\Http\Livewire\UserIndex;
+use App\Http\Livewire\FriendRequests;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,10 +31,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('attended');
 
     Route::get('friends', Friends::class)->name('friends');
-
-    Route::get('/friend-requests', function () {
-        return view('friend-requests');
-    })->name('friend-requests');
+    Route::get('friend-requests', FriendRequests::class)->name('friend-requests');
 
     Route::get('/notifications', function () {
         return view('notifications');

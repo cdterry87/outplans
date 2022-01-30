@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use App\Models\Friend;
 use App\Models\FriendRequest;
 use Livewire\Component;
 use Livewire\WithPagination;

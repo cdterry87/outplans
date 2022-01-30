@@ -10,24 +10,8 @@
         lg:gap-8
       ">
         <div class="w-full flex flex-wrap items-center gap-4 md:items-start lg:flex-row lg:items-center">
-            <h1 class="font-bold text-2xl">My Plans</h1>
-            <x-element.button
-                label="New Plan"
-                icon="fas fa-plus-circle"
-                primary
-                wire:click="openModal"
-            />
+            <h1 class="font-bold text-2xl">Friend Requests</h1>
         </div>
-    </div>
-
-    <div
-        x-cloak
-        x-data="{isModalOpen: @entangle('isModalOpen')}"
-        @keydown.window.escape="isModalOpen = false"
-    >
-        <x-modal.base>
-            <x-form.plan />
-        </x-modal.base>
     </div>
 
     <livewire:filters
@@ -40,24 +24,24 @@
 
     @if ($isDeleteConfirmationShown)
         <div class="my-6">
-            <x-form.delete-confirmation message="Are you sure you want to delete this plan?" />
+            <x-form.delete-confirmation message="Are you sure you want to delete this friend request?" />
         </div>
     @endif
 
     <x-card.wrapper>
-        @forelse ($plans as $plan)
-            <x-card.plan
-                :plan="$plan"
-                can-edit
+        @forelse ($friendRequests as $user)
+            <x-card.user
+                :user="$user"
+                friend-request
             />
         @empty
             <x-card.empty>
-                You do not currently have any plans.
+                You do not currently have any friend requests.
             </x-card.empty>
         @endforelse
     </x-card.wrapper>
 
     <div class="mt-6">
-        {{ $plans->links() }}
+        {{ $friendRequests->links() }}
     </div>
 </div>
