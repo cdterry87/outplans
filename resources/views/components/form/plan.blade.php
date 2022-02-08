@@ -3,7 +3,7 @@
     enctype="multipart/form-data"
     class="flex flex-col gap-2 mt-2"
 >
-    <div class="flex items-center justify-between gap-4">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 mb-4">
         <h2 class="text-3xl font-bold">Plan</h2>
         <div class="flex gap-2">
             <x-element.button

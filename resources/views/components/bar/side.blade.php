@@ -63,7 +63,7 @@
                 <hr class="my-4" />
                 <div class="flex flex-col justify-between gap-4">
                     <div>
-                        <ul class="text-lg space-y-3">
+                        <ul class="text-lg space-y-3 font-bold">
                             <li>
                                 <a
                                     href="{{ route('dashboard') }}"

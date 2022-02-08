@@ -1,4 +1,4 @@
-<div>
+<div x-data="{isModalOpen: @entangle('isModalOpen')}">
     <div
         class="
         flex flex-col
@@ -20,15 +20,9 @@
         </div>
     </div>
 
-    <div
-        x-cloak
-        x-data="{isModalOpen: @entangle('isModalOpen')}"
-        @keydown.window.escape="isModalOpen = false"
-    >
-        <x-modal.base>
-            <x-form.plan />
-        </x-modal.base>
-    </div>
+    <x-modal.base>
+        <x-form.plan />
+    </x-modal.base>
 
     <livewire:filters
         :show="$show"

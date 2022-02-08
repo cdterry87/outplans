@@ -47,7 +47,8 @@
 <body class="font-sans antialiased">
     <div class="relative flex">
         <x-bar.side @close-sidebar="onCloseSidebar" />
-        <div
+        <main
+            id="main"
             class="
                 bg-gray-100
                 flex-1 flex flex-col
@@ -55,8 +56,9 @@
                 gap-4
                 min-h-screen
                 h-screen
-                overflow-scroll
-              ">
+                overflow-auto
+              "
+        >
             <div class="flex flex-col gap-4 min-h-screen h-full">
                 <x-bar.header @open-sidebar="onOpenSidebar" />
                 <div class="flex-1 px-8 pb-8">
@@ -64,10 +66,8 @@
                 </div>
                 <x-bar.footer />
             </div>
-        </div>
+        </main>
     </div>
-
-    @stack('modals')
 
     @livewireScripts
 </body>
