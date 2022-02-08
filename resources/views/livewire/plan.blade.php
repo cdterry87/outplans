@@ -138,17 +138,11 @@
     {{-- End public plan --}}
 
     {{-- Friends Modal --}}
-    <div
-        x-cloak
-        x-data="{isModalOpen: @entangle('isModalOpen')}"
-        @keydown.window.escape="isModalOpen = false"
-    >
-        <x-modal.base>
-            <x-form.invite-friends
-                :friends="$friends"
-                :invites="$invites"
-            />
-        </x-modal.base>
-    </div>
+    <x-modal.base>
+        <x-form.invite-friends
+            :friends="$friends"
+            :invites="$invites"
+        />
+    </x-modal.base>
     {{-- End Friends Modal --}}
 </div>

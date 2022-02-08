@@ -1,5 +1,6 @@
 <div
     x-cloak
+    x-data="{isModalOpen: @entangle('isModalOpen')}"
     x-show="isModalOpen"
     x-init="$watch('isModalOpen', isModalOpen => {
         const mainClasses = document.getElementById('main').classList

@@ -1,4 +1,4 @@
-<div x-data="{isModalOpen: @entangle('isModalOpen')}">
+<div>
     <div
         class="
         flex flex-col
