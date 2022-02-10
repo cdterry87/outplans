@@ -5,17 +5,19 @@ namespace App\Http\Livewire;
 use App\Models\Plan;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 
 class Plans extends Component
 {
     use WithPagination;
+    use WithFileUploads;
 
     // Listeners
     protected $listeners = ['edit', 'filterShow', 'filterSortBy', 'filterSortOrder', 'filterSearch'];
 
     // Filter options
     public $count, $search;
-    public $show = 6;
+    public $show = 30;
     public $sortBy = 'when';
     public $sortOrder = 'desc';
     public $sortOptions = [
@@ -27,7 +29,8 @@ class Plans extends Component
 
     // Model properties
     public $plan_id;
-    public $title, $description, $location, $address, $city, $state, $postal_code, $when, $cost;
+    public $title, $description, $location, $address, $city, $state, $postal_code, $when, $cost, $image;
+    public $display_image;
 
     // Form properties
     public $isModalOpen = false;
@@ -40,6 +43,11 @@ class Plans extends Component
         'state' => 'required|max:2',
         'postal_code' => 'required|max:10',
         'when' => 'required',
+        'image' => 'required_without:plan_id|nullable|sometimes|max:10000',
+    ];
+
+    protected $messages = [
+        'image.required_without' => 'You must upload an image for this plan.',
     ];
 
     public function render()
@@ -79,6 +87,7 @@ class Plans extends Component
         $this->postal_code = $plan->postal_code;
         $this->when = $plan->when;
         $this->cost = $plan->cost;
+        $this->display_image = $plan->getDisplayImage();
 
         $this->openModal();
     }
@@ -87,7 +96,7 @@ class Plans extends Component
     {
         $this->validate();
 
-        Plan::updateOrCreate(['id' => $this->plan_id], [
+        $plan = Plan::updateOrCreate(['id' => $this->plan_id], [
             'user_id' => auth()->id(),
             'title' => $this->title,
             'description' => $this->description,
@@ -100,10 +109,22 @@ class Plans extends Component
             'cost' => $this->cost,
         ]);
 
+        // If an image was selected, upload it
+        if ($this->image) {
+            $this->uploadImage($plan->id);
+        }
+
         $this->count++;
         $this->emit('updateCount', $this->count);
 
         $this->closeModal();
+    }
+
+    public function uploadImage($planId)
+    {
+        $image = $this->image->store('plans/' . auth()->id() . '/' . $planId);
+
+        Plan::findOrFail($planId)->update(['image' => $image]);
     }
 
     public function deleteConfirmation($id)
@@ -169,5 +190,7 @@ class Plans extends Component
         $this->postal_code = null;
         $this->when = null;
         $this->cost = null;
+        $this->image = null;
+        $this->display_image = null;
     }
 }

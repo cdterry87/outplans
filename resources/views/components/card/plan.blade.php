@@ -51,10 +51,12 @@
                     />
                 </div>
             @endif
-            <img
-                src="https://picsum.photos/300/200"
-                class="w-full h-40 object-cover"
-            />
+            @if ($plan->image)
+                <img
+                    src="{{ $plan->getDisplayImage() }}"
+                    class="w-full h-40 object-cover rounded-t-lg"
+                />
+            @endif
             {{-- <div
                 :class="{
                             'bg-green-500': going,

@@ -5,6 +5,7 @@
     'value' => null,
     'type' => 'text',
     'placeholder' => null,
+    'image' => null,
     'fullWidth' => false,
     'uppercase' => false,
     'hiddenLabel' => false,
@@ -13,6 +14,10 @@
 @php
 if ($fullWidth) {
     $classes[] = 'w-full';
+}
+
+if ($image && !is_string($image)) {
+    $image = $image->temporaryUrl();
 }
 @endphp
 
@@ -32,12 +37,23 @@ if ($fullWidth) {
         p-3
         rounded
       ">
-        <input
-            {{ $attributes->merge([
-                'type' => 'file',
-                'name' => $name,
-                'id' => $id ?? $name,
-            ]) }}
-        />
+        <div class="flex items-center gap-4">
+            @if ($image)
+                <img
+                    src="{{ $image }}"
+                    class="rounded-md shadow-md h-20 w-20 object-cover"
+                />
+            @endif
+            <input
+                {{ $attributes->merge([
+                    'type' => 'file',
+                    'name' => $name,
+                    'id' => $id ?? $name,
+                ]) }}
+            />
+        </div>
+        @error($name)
+            <p class="text-red-600 text-xs mt-1">{{ $message }} </p>
+        @enderror
     </div>
 </div>

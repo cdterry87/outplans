@@ -57,4 +57,9 @@ class Plan extends Model
     {
         return $this->address . ' ' . $this->city . ', ' . $this->state . ' ' . $this->postal_code;
     }
+
+    public function getDisplayImage()
+    {
+        return asset('storage/' . $this->image) ?? null;
+    }
 }

@@ -81,11 +81,14 @@
             label="Cost"
             name="cost"
             full-width
+            wire:model.defer="cost"
         />
     </div>
     <x-input.file
         label="Image"
         name="image"
         full-width
+        :image="$this->image ?? $this->display_image"
+        wire:model="image"
     />
 </form>

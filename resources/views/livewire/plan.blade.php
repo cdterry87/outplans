@@ -29,7 +29,7 @@
       ">
         <div class="flex flex-col lg:flex-row">
             <img
-                src="https://picsum.photos/800/600"
+                src="{{ $plan->getDisplayImage() }}"
                 class="
                     w-full
                     lg:w-3/5

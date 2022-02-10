@@ -1,19 +1,21 @@
 <div
     x-data="{ showFilters: false }"
-    class="bg-gray-200 border border-gray-300 shadow-md rounded-lg p-4 my-6"
+    {{-- class="bg-gray-200 border border-gray-300 shadow-md rounded-lg p-4 my-6" --}}
+    class="bg-indigo-700 border border-indigo-900 text-gray-200 shadow-md rounded-lg p-4 my-6"
 >
     <div
         class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm gap-2 sm:gap-4 font-bold select-none">
         <h4 class="flex items-center">
             Found
-            <span class="text-xl text-indigo-700 mx-2">{{ $totalResults }}</span>
+            <span class="text-2xl font-bold text-white mx-2">{{ $totalResults }}</span>
             Results
         </h4>
         <a
             href="#"
             @click.prevent="showFilters = !showFilters"
         >
-            Show Filters <i
+            Show Filters
+            <i
                 class="fas"
                 :class="showFilters ? 'fa-chevron-up' : 'fa-chevron-down'"
             ></i>
