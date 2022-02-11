@@ -52,7 +52,7 @@
                     pt-8
                 ">
                 <div>
-                    <div class="text-indigo-700">{{ $plan->when }}</div>
+                    <div class="text-indigo-700">{{ $plan->getFormattedWhen() }}</div>
                     <div class="mt-6">
                         <span class="block text-2xl">{{ $plan->title }}</span>
                         <div class="font-normal text-gray-600 text-sm mt-2">

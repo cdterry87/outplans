@@ -51,12 +51,10 @@
                     />
                 </div>
             @endif
-            @if ($plan->image)
-                <img
-                    src="{{ $plan->getDisplayImage() }}"
-                    class="w-full h-40 object-cover rounded-t-lg"
-                />
-            @endif
+            <img
+                src="{{ $plan->getDisplayImage() ?? null }}"
+                class="w-full h-40 object-cover"
+            />
             {{-- <div
                 :class="{
                             'bg-green-500': going,
@@ -99,7 +97,7 @@
                 @endif
             </div>
             <div class="flex flex-col gap-2 text-sm">
-                <div class="font-bold text-indigo-700">{{ $plan->when }}</div>
+                <div class="font-bold text-indigo-700">{{ $plan->getFormattedWhen() }}</div>
                 <div class="text-gray-600">
                     <strong>{{ $plan->location }}</strong>
                     <p class="text-xs">{{ $plan->getFullAddress() }}</p>

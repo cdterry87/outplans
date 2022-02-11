@@ -48,9 +48,9 @@ class Plan extends Model
         return $privacy_types[$value];
     }
 
-    public function getWhenAttribute($value)
+    public function getFormattedWhen()
     {
-        return Carbon::parse($value)->toDayDateTimeString();
+        return Carbon::parse($this->when)->toDayDateTimeString();
     }
 
     public function getFullAddress()

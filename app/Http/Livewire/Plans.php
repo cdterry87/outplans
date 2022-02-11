@@ -85,7 +85,7 @@ class Plans extends Component
         $this->city = $plan->city;
         $this->state = $plan->state;
         $this->postal_code = $plan->postal_code;
-        $this->when = $plan->when;
+        $this->when = $plan->when->format('Y-m-d\TH:i');
         $this->cost = $plan->cost;
         $this->display_image = $plan->getDisplayImage();
 
