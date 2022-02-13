@@ -97,7 +97,7 @@
                 @endif
             </div>
             <div class="flex flex-col gap-2 text-sm">
-                <div class="font-bold text-indigo-700">{{ $plan->getFormattedWhen() }}</div>
+                <div class="font-bold text-indigo-700">{{ $plan->getFormattedDateRange() }}</div>
                 <div class="text-gray-600">
                     <strong>{{ $plan->location }}</strong>
                     <p class="text-xs">{{ $plan->getFullAddress() }}</p>

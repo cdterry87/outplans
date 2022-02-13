@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
         // Create plans in the past for secondary user and add the guest account as an attendee
         $user->plans()->saveMany(Plan::factory()->count(3)->create([
             'user_id' => $user->id,
-            'when' => Carbon::yesterday(),
+            'start_datetime' => Carbon::yesterday(),
             'published' => Carbon::yesterday(),
             'created_at' => Carbon::yesterday(),
             'updated_at' => Carbon::yesterday()
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
         // Create plans in the future for secondary user and send invites to the guest user
         $user->plans()->saveMany(Plan::factory()->count(3)->create([
             'user_id' => $user->id,
-            'when' => Carbon::now()->addYear(),
+            'start_datetime' => Carbon::now()->addYear(),
             'published' => Carbon::yesterday(),
             'created_at' => Carbon::yesterday(),
             'updated_at' => Carbon::yesterday()

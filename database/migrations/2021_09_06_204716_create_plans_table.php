@@ -28,7 +28,8 @@ class CreatePlansTable extends Migration
             $table->string('postal_code', 10);
             $table->string('cost', 10)->nullable();
             $table->string('image', 2048)->nullable();
-            $table->timestamp('when');
+            $table->timestamp('start_datetime');
+            $table->timestamp('end_datetime')->nullable();
             $table->timestamp('published')->nullable(); // Null (default) = Not Published
             $table->string('privacy')->default('F'); // F = friends only (default), I = invite only, P = public
             $table->timestamps();

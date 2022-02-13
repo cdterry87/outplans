@@ -18,18 +18,18 @@ class Plans extends Component
     // Filter options
     public $count, $search;
     public $show = 30;
-    public $sortBy = 'when';
+    public $sortBy = 'start_datetime';
     public $sortOrder = 'desc';
     public $sortOptions = [
         'cost' => 'Cost',
-        'when' => 'Date',
+        'start_datetime' => 'Date',
         'created_at' => 'Created',
         'title' => 'Title',
     ];
 
     // Model properties
     public $plan_id;
-    public $title, $description, $location, $address, $city, $state, $postal_code, $when, $cost, $image;
+    public $title, $description, $location, $address, $city, $state, $postal_code, $start_datetime, $end_datetime, $cost, $image;
     public $display_image;
 
     // Form properties
@@ -42,12 +42,16 @@ class Plans extends Component
         'city' => 'required|max:50',
         'state' => 'required|max:2',
         'postal_code' => 'required|max:10',
-        'when' => 'required',
+        'start_datetime' => 'required|date|after_or_equal:now',
+        'end_datetime' => 'nullable|date|after_or_equal:start_datetime',
+        'cost' => 'nullable|numeric',
         'image' => 'required_without:plan_id|nullable|sometimes|max:10000',
     ];
 
     protected $messages = [
         'image.required_without' => 'You must upload an image for this plan.',
+        'start_datetime.after_or_equal' => 'The start date must be on or after the current date.',
+        'end_datetime.after_or_equal' => 'The end date must be on or after the start date.',
     ];
 
     public function render()
@@ -85,7 +89,8 @@ class Plans extends Component
         $this->city = $plan->city;
         $this->state = $plan->state;
         $this->postal_code = $plan->postal_code;
-        $this->when = $plan->when->format('Y-m-d\TH:i');
+        $this->start_datetime = $plan->start_datetime->format('Y-m-d\TH:i');
+        $this->end_datetime = $this->end_datetime ? $plan->end_datetime->format('Y-m-d\TH:i') : null;
         $this->cost = $plan->cost;
         $this->display_image = $plan->getDisplayImage();
 
@@ -105,7 +110,8 @@ class Plans extends Component
             'city' => $this->city,
             'state' => $this->state,
             'postal_code' => $this->postal_code,
-            'when' => $this->when,
+            'start_datetime' => $this->start_datetime,
+            'end_datetime' => $this->end_datetime,
             'cost' => $this->cost,
         ]);
 
@@ -188,7 +194,8 @@ class Plans extends Component
         $this->city = null;
         $this->state = null;
         $this->postal_code = null;
-        $this->when = null;
+        $this->start_datetime = null;
+        $this->end_datetime = null;
         $this->cost = null;
         $this->image = null;
         $this->display_image = null;

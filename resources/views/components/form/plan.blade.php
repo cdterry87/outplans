@@ -62,6 +62,12 @@
             full-width
             wire:model.defer="postal_code"
         />
+        <x-input.text
+            label="Cost"
+            name="cost"
+            full-width
+            wire:model.defer="cost"
+        />
     </div>
     <x-input.textarea
         label="Description"
@@ -72,16 +78,17 @@
     <div class="flex flex-col sm:flex-row gap-4">
         <x-input.text
             label="Date/Time"
-            name="when"
+            name="start_datetime"
             type="datetime-local"
             full-width
-            wire:model.defer="when"
+            wire:model.defer="start_datetime"
         />
         <x-input.text
-            label="Cost"
-            name="cost"
+            label="End Date/Time (optional)"
+            name="end_datetime"
+            type="datetime-local"
             full-width
-            wire:model.defer="cost"
+            wire:model.defer="end_datetime"
         />
     </div>
     <x-input.file
