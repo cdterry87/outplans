@@ -71,7 +71,7 @@ class User extends Authenticatable
             ->orderBy('when');
     }
 
-    public function plans_invites()
+    public function plans_invites_sent()
     {
         return DB::table('plans')
             ->select(
@@ -82,24 +82,18 @@ class User extends Authenticatable
             ->join('plans_invites', 'plans_invites.plan_id', '=', 'plans.id')
             ->join('users', 'users.id', '=', 'plans_invites.invited_user_id')
             ->where('plans_invites.user_id', '=', auth()->user()->id)
-            ->orderBy('when');
+            ->orderBy('start_datetime');
     }
 
     public function plans_invited()
     {
-        return DB::table('plans')
+        return $this->belongsToMany(Plan::class, 'plans_invites', 'invited_user_id', 'plan_id')
             ->select(
                 'plans.*',
                 'users.name as invited_by',
                 'plans_invites.user_id',
-                'plans_attendees.status'
             )
-            ->join('plans_invites', 'plans_invites.plan_id', '=', 'plans.id')
-            ->leftJoin('plans_attendees', 'plans_attendees.plan_id', '=', 'plans.id')
-            ->join('users', 'users.id', '=', 'plans_invites.user_id')
-            ->where('plans_invites.invited_user_id', '=', auth()->user()->id)
-            ->where('plans.when', '>=', Carbon::now())
-            ->orderBy('plans.when');
+            ->join('users', 'users.id', '=', 'plans_invites.user_id');
     }
 
     public function plans_attended()

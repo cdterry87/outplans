@@ -1,13 +1,12 @@
 @props([
     'plan' => null,
-    'invitedBy' => '',
     'statusMessage' => '',
     'going' => false,
     'canEdit' => false,
 ])
 
 <div class="w-full lg:w-1/2 xl:w-1/3 flex flex-col p-3">
-    @if ($invitedBy)
+    @if ($plan->invited_by)
         <div class="bg-white rounded-t-lg border-x border-t border-gray-100 p-4">
             <a
                 href="#"
@@ -20,7 +19,7 @@
                 />
                 <div>
                     Invited by
-                    <strong>{{ $invitedBy }}</strong>
+                    <strong>{{ $plan->invited_by }}</strong>
                 </div>
             </a>
         </div>
