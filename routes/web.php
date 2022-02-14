@@ -2,7 +2,7 @@
 
 use App\Http\Livewire\Plans;
 use App\Http\Livewire\Friends;
-use App\Http\Livewire\PlanIndex;
+use App\Http\Livewire\Plan;
 use App\Http\Livewire\UserIndex;
 use App\Http\Livewire\FriendRequests;
 use App\Http\Livewire\Invites;
@@ -20,7 +20,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('user/{user}', UserIndex::class)->name('user');
 
     Route::get('plans', Plans::class)->name('plans');
-    Route::get('plan/{plan}', PlanIndex::class)->name('plan');
+    Route::get('plan/{plan}', Plan::class)->name('plan');
     Route::get('invites', Invites::class)->name('invites');
 
     Route::get('/attended', function () {

@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Plan;
 use Livewire\Component;
+use App\Models\PlanInvite;
+use App\Models\PlanAttendee;
 use Livewire\WithPagination;
 
 class Invites extends Component
@@ -49,6 +51,19 @@ class Invites extends Component
             'sortOptions' => $this->sortOptions,
             'totalResults' => $this->totalResults,
         ]);
+    }
+
+    public function attending($id, $status)
+    {
+        PlanAttendee::create([
+            'status' => $status,
+            'user_id' => auth()->user()->id,
+            'plan_id' => $id
+        ]);
+
+        PlanInvite::where('plan_id', $id)
+            ->where('invited_user_id', auth()->user()->id)
+            ->delete();
     }
 
     public function filterShow($value)

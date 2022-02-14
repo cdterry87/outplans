@@ -17,6 +17,7 @@ $classes = implode(' ', $classes);
 @endphp
 
 <i
+    {{ $attributes }}
     class="
   rounded-full
   border-2
@@ -30,4 +31,5 @@ $classes = implode(' ', $classes);
   ease-in-out
   hover:shadow-lg hover:-translate-y-1 hover:brightness-125
   {{ $classes }}
-"></i>
+"
+></i>

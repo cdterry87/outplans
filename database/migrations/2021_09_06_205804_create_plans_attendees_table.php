@@ -23,7 +23,7 @@ class CreatePlansAttendeesTable extends Migration
                 ->constrained('plans')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('status'); // A = Attending, N = Not Attending, M = Maybe
+            $table->string('status')->default('M'); // A = Attending, N = Not Attending, M = Maybe
             $table->timestamps();
         });
     }

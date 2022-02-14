@@ -29,8 +29,14 @@
         <div class="relative">
             @if (!$plan->isMine())
                 <div class="absolute top-3 right-3 flex items-center gap-3">
-                    <x-element.plan-action going />
-                    <x-element.plan-action not-going />
+                    <x-element.plan-action
+                        going
+                        wire:click.prevent="attending({{ $plan->id }}, true)"
+                    />
+                    <x-element.plan-action
+                        not-going
+                        wire:click.prevent="attending({{ $plan->id }}, false)"
+                    />
                 </div>
             @elseif($plan->isMine() && $canEdit)
                 <div class="absolute top-3 right-3 flex items-center gap-3">

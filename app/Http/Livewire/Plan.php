@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Plan;
+use App\Models\Plan as PlanModel;
 use Livewire\Component;
 
-class PlanIndex extends Component
+class Plan extends Component
 {
     protected $listeners = ['filterSearch'];
 
@@ -15,7 +15,7 @@ class PlanIndex extends Component
     public $selectedFriends = [];
     public $search;
 
-    public function mount(Plan $plan)
+    public function mount(PlanModel $plan)
     {
         $this->plan = $plan;
     }

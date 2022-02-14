@@ -12,6 +12,8 @@ class PlanAttendee extends Model
 
     protected $table = 'plans_attendees';
 
+    protected $guarded = [];
+
     public function plan()
     {
         return $this->belongsTo(Plan::class);
