@@ -1,16 +1,15 @@
-<div
-    class="w-full
-    flex justify-center items-center
+<div class="w-full
+    flex flex-col justify-center items-center
     gap-4
-    bg-white
-    border border-gray-100
-    shadow-md
-    rounded-lg
-    p-4
+    px-4
+    py-12
 ">
-    @if ($slot->isNotEmpty())
-        {{ $slot }}
-    @else
-        No results found.
-    @endif
+    <i class="fas fa-frown text-8xl text-gray-300"></i>
+    <div class="text-gray-400">
+        @if ($slot->isNotEmpty())
+            {{ $slot }}
+        @else
+            No results found.
+        @endif
+    </div>
 </div>
