@@ -74,6 +74,14 @@
                             </li>
                             <li>
                                 <a
+                                    href="{{ route('browse') }}"
+                                    class="block w-full hover:opacity-80"
+                                >
+                                    <i class="fas fa-globe mr-2"></i> Browse Plans
+                                </a>
+                            </li>
+                            <li>
+                                <a
                                     href="{{ route('plans') }}"
                                     class="block w-full hover:opacity-80"
                                 >
@@ -102,14 +110,6 @@
                                     class="block w-full hover:opacity-80"
                                 >
                                     <i class="fas fa-users mr-2"></i> Friends
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="{{ route('friend-requests') }}"
-                                    class="block w-full hover:opacity-80"
-                                >
-                                    <i class="fas fa-user-plus mr-2"></i> Friend Requests
                                 </a>
                             </li>
                         </ul>

@@ -37,7 +37,7 @@
             </div>
         </div>
         @if ($friend)
-            <div class="flex justify-center mt-4">
+            <div class="flex justify-center">
                 <x-element.button
                     label="Remove Friend"
                     small

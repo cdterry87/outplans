@@ -1,6 +1,5 @@
 <div
     x-data="{ showFilters: false }"
-    {{-- class="bg-gray-200 border border-gray-300 shadow-md rounded-lg p-4 my-6" --}}
     class="bg-indigo-700 border border-indigo-900 text-gray-200 shadow-md rounded-lg p-4 my-6"
 >
     <div
@@ -14,7 +13,7 @@
             href="#"
             @click.prevent="showFilters = !showFilters"
         >
-            Show Filters
+            <span x-text="showFilters ? 'Hide Filters' : 'Show Filters'"></span>
             <i
                 class="fas"
                 :class="showFilters ? 'fa-chevron-up' : 'fa-chevron-down'"

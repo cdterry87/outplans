@@ -9,14 +9,23 @@
         gap-4
         lg:gap-8
       ">
-        <div class="w-full flex flex-wrap items-center gap-4 md:items-start lg:flex-row lg:items-center">
-            <h1 class="font-bold text-2xl">My Friends</h1>
-            <x-element.button
-                label="Add Friend"
-                icon="fas fa-user-plus"
-                primary
-                wire:click="openModal"
-            />
+        <div class="w-full flex flex-wrap items-center justify-between gap-4 lg:flex-row">
+            <div class="flex items-center flex-wrap gap-4">
+                <h1 class="font-bold text-2xl">My Friends</h1>
+                <x-element.button
+                    label="Add Friend"
+                    icon="fas fa-user-plus"
+                    primary
+                    wire:click="openModal"
+                />
+            </div>
+
+            <a
+                class="font-bold text-indigo-800"
+                href="{{ route('friend-requests') }}"
+            >
+                <i class="fas fa-user-plus mr-2"></i> Friend Requests
+            </a>
         </div>
     </div>
 
