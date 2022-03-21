@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Livewire\Plans;
-use App\Http\Livewire\Friends;
 use App\Http\Livewire\Plan;
+use App\Http\Livewire\Plans;
+use App\Http\Livewire\Browse;
+use App\Http\Livewire\Friends;
+use App\Http\Livewire\Invites;
 use App\Http\Livewire\UserIndex;
 use App\Http\Livewire\FriendRequests;
-use App\Http\Livewire\Invites;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,9 +20,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('user/{user}', UserIndex::class)->name('user');
 
-    Route::get('browse', function () {
-        return view('browse');
-    })->name('browse');
+    Route::get('browse', Browse::class)->name('browse');
 
     Route::get('plans', Plans::class)->name('plans');
     Route::get('plan/{plan}', Plan::class)->name('plan');
