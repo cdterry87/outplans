@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\PlanInvite;
 use App\Models\PlanAttendee;
 use Livewire\WithPagination;
+use Illuminate\Support\Carbon;
 
 class Invites extends Component
 {
@@ -27,13 +28,10 @@ class Invites extends Component
         'title' => 'Title',
     ];
 
-    // Model properties
-
-    // Form properties
-
     public function render()
     {
         $plans = auth()->user()->plans_invited()
+            ->where('start_datetime', '>=', Carbon::now())
             ->when(strlen($this->search) >= 3, function ($query) {
                 return $query->where('title', 'like', '%' . $this->search . '%')
                     ->orWhere('location', 'like', '%' . $this->search . '%')

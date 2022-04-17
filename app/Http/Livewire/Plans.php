@@ -6,6 +6,7 @@ use App\Models\Plan;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Carbon;
 
 class Plans extends Component
 {
@@ -57,6 +58,7 @@ class Plans extends Component
     public function render()
     {
         $plans = auth()->user()->plans()
+            ->where('start_datetime', '>=', Carbon::now())
             ->when(strlen($this->search) >= 3, function ($query) {
                 return $query->where('title', 'like', '%' . $this->search . '%')
                     ->orWhere('location', 'like', '%' . $this->search . '%')

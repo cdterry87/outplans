@@ -6,6 +6,7 @@ use App\Models\Plan;
 use App\Models\Friend;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Carbon;
 
 class Browse extends Component
 {
@@ -30,6 +31,7 @@ class Browse extends Component
     {
         $plans = Plan::query()
             ->where('user_id', '!=', auth()->id())
+            ->where('start_datetime', '>=', Carbon::now())
             ->when(strlen($this->search) >= 3, function ($query) {
                 return $query->where('title', 'like', '%' . $this->search . '%')
                     ->orWhere('location', 'like', '%' . $this->search . '%')
