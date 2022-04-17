@@ -14,7 +14,7 @@
                 <h1 class="font-bold text-2xl">My Friends</h1>
                 <x-element.button
                     label="Add Friend"
-                    icon="fas fa-user-plus"
+                    icon="fas fa-plus"
                     primary
                     wire:click="openModal"
                 />

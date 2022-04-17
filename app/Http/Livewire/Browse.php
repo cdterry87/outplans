@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Plan;
+use App\Models\Friend;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -33,6 +34,15 @@ class Browse extends Component
                 return $query->where('title', 'like', '%' . $this->search . '%')
                     ->orWhere('location', 'like', '%' . $this->search . '%')
                     ->orWhere('address', 'like', '%' . $this->search . '%');
+            })
+            ->where(function ($query) {
+                // Get only the plans set to 'P' for Public 
+                $query->where('privacy', 'P');
+                // or get plans of friends that are set to 'F' for Friends Only
+                $query->orWhere(function ($subquery) {
+                    $subquery->where('privacy', 'F');
+                    $subquery->whereIn('user_id', Friend::select('friend_user_id')->where('user_id', auth()->id()));
+                });
             })
             ->with('user')
             ->withCount('attendees')
