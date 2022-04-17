@@ -120,7 +120,7 @@
                         @endif
                     </div>
                     <div class="text-indigo-700">
-                        <i class="fas fa-users"></i> {{ $plan->attendees_count }} Going
+                        <i class="fas fa-users"></i> {{ $plan->attendees_count ?? 0 }} Going
                     </div>
                 </div>
             </div>
