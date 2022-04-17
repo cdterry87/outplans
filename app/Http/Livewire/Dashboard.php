@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\PlanInvite;
 use App\Models\PlanAttendee;
 use Livewire\WithPagination;
 
@@ -41,5 +42,26 @@ class Dashboard extends Component
             'sortOptions' => $this->sortOptions,
             'totalResults' => $this->totalResults,
         ]);
+    }
+
+    public function filterShow($value)
+    {
+        $this->show = $value;
+    }
+
+    public function filterSortBy($value)
+    {
+        $this->sortBy = $value;
+    }
+
+    public function filterSortOrder($value)
+    {
+        $this->sortOrder = $value;
+    }
+
+    public function filterSearch($value)
+    {
+        $this->search = $value;
+        $this->resetPage();
     }
 }

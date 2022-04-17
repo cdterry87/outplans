@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use App\Models\Plan;
 use App\Models\Friend;
 use Livewire\Component;
+use App\Models\PlanInvite;
+use App\Models\PlanAttendee;
 use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
 
@@ -59,6 +61,19 @@ class Browse extends Component
             'sortOptions' => $this->sortOptions,
             'totalResults' => $this->totalResults,
         ]);
+    }
+
+    public function attending($id, $status)
+    {
+        PlanAttendee::create([
+            'status' => $status,
+            'user_id' => auth()->user()->id,
+            'plan_id' => $id
+        ]);
+
+        PlanInvite::where('plan_id', $id)
+            ->where('invited_user_id', auth()->user()->id)
+            ->delete();
     }
 
     public function filterShow($value)

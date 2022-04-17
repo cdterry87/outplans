@@ -24,7 +24,10 @@
 
     <x-card.wrapper>
         @forelse ($upcomingPlans as $upcomingPlan)
-            <x-card.plan :plan="$upcomingPlan->plan" />
+            <x-card.plan
+                :plan="$upcomingPlan->plan"
+                going
+            />
         @empty
             <x-card.empty>
                 Sorry, we couldn't find any plans. Please check back later.

@@ -3,6 +3,7 @@
     'statusMessage' => '',
     'going' => false,
     'canEdit' => false,
+    'attended' => false,
 ])
 
 <div class="w-full lg:w-1/2 xl:w-1/3 flex flex-col p-3">
@@ -27,34 +28,36 @@
 
     <div class="bg-white border border-gray-100 rounded-b-lg shadow-md">
         <div class="relative">
-            @if (!$plan->isMine())
-                <div class="absolute top-3 right-3 flex items-center gap-3">
-                    <x-element.plan-action
-                        going
-                        wire:click.prevent="attending({{ $plan->id }}, true)"
-                    />
-                    <x-element.plan-action
-                        not-going
-                        wire:click.prevent="attending({{ $plan->id }}, false)"
-                    />
-                </div>
-            @elseif($plan->isMine() && $canEdit)
-                <div class="absolute top-3 right-3 flex items-center gap-3">
-                    <x-element.button
-                        label="Edit"
-                        icon="fas fa-edit"
-                        success
-                        small
-                        wire:click.prevent="edit({{ $plan->id }})"
-                    />
-                    <x-element.button
-                        label="Delete"
-                        icon="fas fa-trash"
-                        danger
-                        small
-                        wire:click.prevent="deleteConfirmation({{ $plan->id }})"
-                    />
-                </div>
+            @if (!$going && !$attended)
+                @if (!$plan->isMine())
+                    <div class="absolute top-3 right-3 flex items-center gap-3">
+                        <x-element.plan-action
+                            going
+                            wire:click.prevent="attending({{ $plan->id }}, true)"
+                        />
+                        <x-element.plan-action
+                            not-going
+                            wire:click.prevent="attending({{ $plan->id }}, false)"
+                        />
+                    </div>
+                @elseif($plan->isMine() && $canEdit)
+                    <div class="absolute top-3 right-3 flex items-center gap-3">
+                        <x-element.button
+                            label="Edit"
+                            icon="fas fa-edit"
+                            success
+                            small
+                            wire:click.prevent="edit({{ $plan->id }})"
+                        />
+                        <x-element.button
+                            label="Delete"
+                            icon="fas fa-trash"
+                            danger
+                            small
+                            wire:click.prevent="deleteConfirmation({{ $plan->id }})"
+                        />
+                    </div>
+                @endif
             @endif
             <img
                 src="{{ $plan->getDisplayImage() ?? null }}"
