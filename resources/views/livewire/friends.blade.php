@@ -21,10 +21,17 @@
             </div>
 
             <a
-                class="font-bold text-indigo-800"
+                class="flex items-center gap-2 font-bold text-indigo-800"
                 href="{{ route('friend-requests') }}"
             >
-                <i class="fas fa-user-plus mr-2"></i> Friend Requests
+                @if ($friendRequestsCount > 0)
+                    <span class="bg-orange-500 p-2 flex items-center justify-center w-8 text-white rounded-full text-xs">
+                        {{ $friendRequestsCount }}
+                    </span>
+                @else
+                    <i class="fas fa-user-plus mr-2"></i>
+                @endif
+                Friend Requests
             </a>
         </div>
     </div>

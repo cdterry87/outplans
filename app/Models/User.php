@@ -118,7 +118,8 @@ class User extends Authenticatable
 
     public function friends_requests()
     {
-        return $this->hasMany(Friend::class);
+        return DB::table('friends_requests')
+            ->where('requested_user_id', '=', auth()->user()->id);
     }
 
     public function friends_with_details()

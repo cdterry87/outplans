@@ -50,10 +50,13 @@ class Friends extends Component
         $this->totalResults = $friends->total();
         $this->emit('updateTotalResults', $this->totalResults);
 
+        $friendRequestsCount = auth()->user()->friends_requests()->count();
+
         return view('livewire.friends', [
             'friends' => $friends,
             'sortOptions' => $this->sortOptions,
             'totalResults' => $this->totalResults,
+            'friendRequestsCount' => $friendRequestsCount,
         ]);
     }
 
