@@ -98,4 +98,16 @@
         :image="$this->image ?? $this->display_image"
         wire:model="image"
     />
+    <x-input.select
+        label="Privacy"
+        name="privacy"
+        full-width
+        wire:model.defer="privacy"
+    >
+        <option value="">Select Privacy</option>
+        <option value="F">Friends Only (only friends can view)</option>
+        <option value="I">Invite Only (only invitees can view)</option>
+        <option value="P">Public (anyone can view)</option>
+
+    </x-input.select>
 </form>

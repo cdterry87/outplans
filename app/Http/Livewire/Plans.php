@@ -31,6 +31,7 @@ class Plans extends Component
     // Model properties
     public $plan_id;
     public $title, $description, $location, $address, $city, $state, $postal_code, $start_datetime, $end_datetime, $cost, $image;
+    public $privacy = 'F';
     public $display_image;
 
     // Form properties
@@ -47,6 +48,7 @@ class Plans extends Component
         'end_datetime' => 'nullable|date|after_or_equal:start_datetime',
         'cost' => 'nullable|numeric',
         'image' => 'required_without:plan_id|nullable|sometimes|max:10000',
+        'privacy' => 'required|in:F,I,P',
     ];
 
     protected $messages = [
@@ -94,6 +96,7 @@ class Plans extends Component
         $this->start_datetime = $plan->start_datetime->format('Y-m-d\TH:i');
         $this->end_datetime = $this->end_datetime ? $plan->end_datetime->format('Y-m-d\TH:i') : null;
         $this->cost = $plan->cost;
+        $this->privacy = $plan->privacy;
         $this->display_image = $plan->getDisplayImage();
 
         $this->openModal();
@@ -115,6 +118,7 @@ class Plans extends Component
             'start_datetime' => $this->start_datetime,
             'end_datetime' => $this->end_datetime,
             'cost' => $this->cost,
+            'privacy' => $this->privacy,
         ]);
 
         // If an image was selected, upload it
@@ -201,5 +205,6 @@ class Plans extends Component
         $this->cost = null;
         $this->image = null;
         $this->display_image = null;
+        $this->privacy = null;
     }
 }

@@ -37,7 +37,7 @@ class Plan extends Model
         return auth()->user()->id === $this->user_id;
     }
 
-    public function getPrivacyAttribute($value)
+    public function getPrivacyLabel($value)
     {
         $privacy_types = [
             'F' => 'Friends Only',

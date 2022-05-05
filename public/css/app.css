@@ -2681,12 +2681,12 @@ select {
     justify-content: space-between;
   }
 
-  .lg\:gap-4 {
-    gap: 1rem;
-  }
-
   .lg\:gap-8 {
     gap: 2rem;
+  }
+
+  .lg\:gap-4 {
+    gap: 1rem;
   }
 
   .lg\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
