@@ -23,25 +23,27 @@
                 </div>
                 @if (!$user->isMe())
                     <div class="mt-2">
-                        <x-element.button
-                            v-if="isFriend"
-                            label="Remove Friend"
-                            small
-                            danger
-                        />
-                        <x-element.button
-                            v-else
-                            label="Add Friend"
-                            small
-                            success
-                        />
+                        @if ($user->isFriend())
+                            <x-element.button
+                                label="Remove Friend"
+                                small
+                                danger
+                            />
+                        @else
+                            <x-element.button
+                                label="Add Friend"
+                                small
+                                success
+                            />
+                        @endif
                     </div>
                 @endif
             </div>
         </div>
-        <div
-            v-if="!isPrivate"
-            class="
+        {{-- @if (!$private)
+            <div
+                v-if="!isPrivate"
+                class="
           flex
           items-end
           justify-end
@@ -51,94 +53,74 @@
           pt-4
           px-4
         "
-        >
-            <label
-                class="hover:text-indigo-700 cursor-pointer"
-                :class="{
-            'font-bold text-indigo-700': selection === 'plans'
-          }"
             >
-                <input
-                    class="hidden"
-                    v-model="selection"
-                    type="radio"
-                    name="selection"
-                    value="plans"
-                />
-                Plans
-            </label>
-            <label
-                class="hover:text-indigo-700 cursor-pointer"
-                :class="{
-            'font-bold text-indigo-700': selection === 'attending'
-          }"
-            >
-                <input
-                    class="hidden"
-                    v-model="selection"
-                    type="radio"
-                    name="selection"
-                    value="attending"
-                />
-                Attending
-            </label>
-            <label
-                class="hover:text-indigo-700 cursor-pointer"
-                :class="{
-            'font-bold text-indigo-700': selection === 'attended'
-          }"
-            >
-                <input
-                    class="hidden"
-                    v-model="selection"
-                    type="radio"
-                    name="selection"
-                    value="attended"
-                />
-                Attended
-            </label>
+                <label
+                    class="hover:text-indigo-700 cursor-pointer"
+                    :class="{
+                        'font-bold text-indigo-700': selection === 'plans'
+                    }"
+                >
+                    <input
+                        class="hidden"
+                        v-model="selection"
+                        type="radio"
+                        name="selection"
+                        value="plans"
+                    />
+                    Plans
+                </label>
+                <label
+                    class="hover:text-indigo-700 cursor-pointer"
+                    :class="{
+                        'font-bold text-indigo-700': selection === 'attending'
+                    }"
+                >
+                    <input
+                        class="hidden"
+                        v-model="selection"
+                        type="radio"
+                        name="selection"
+                        value="attending"
+                    />
+                    Attending
+                </label>
+                <label
+                    class="hover:text-indigo-700 cursor-pointer"
+                    :class="{
+                        'font-bold text-indigo-700': selection === 'attended'
+                    }"
+                >
+                    <input
+                        class="hidden"
+                        v-model="selection"
+                        type="radio"
+                        name="selection"
+                        value="attended"
+                    />
+                    Attended
+                </label>
+            </div>
+        @endif --}}
+    </div>
+    @if ($private)
+        <div class=" flex flex-col items-center justify-center gap-2 text-gray-600 my-12">
+            <i class="fas fa-lock text-8xl text-gray-200"></i>
+            <p class="font-bold text-lg">This account is private.</p>
+            <p class="text-md">You will not be able to view this user's profile.</p>
         </div>
-    </div>
-    <div
-        v-if="isPrivate"
-        class="
-        flex flex-col
-        items-center
-        justify-center
-        gap-2
-        text-gray-600
-        my-12
-      "
-    >
-        <i class="fas fa-lock text-8xl text-gray-200"></i>
-        <p class="font-bold text-lg">This account is private.</p>
-        <p class="text-md">You will not be able to view this user's profile.</p>
-    </div>
-    <div
-        v-else
-        class="mt-4"
-    >
-        {{-- <div v-show="selection === 'plans'">
-            <h2 class="text-xl font-bold mb-4">John's Plans</h2>
+    @else
+        <div class="mt-4">
+            <h2 class="text-xl font-bold mb-4">Public Plans</h2>
+
             <x-card.wrapper>
-                <x-card.plan />
-                <x-card.plan />
+                @forelse ($user->getPublicPlans() as $plan)
+                    <x-card.plan :plan="$plan" />
+                @empty
+                    <x-card.empty>
+                        This user does not have any public plans.
+                    </x-card.empty>
+                @endforelse
             </x-card.wrapper>
         </div>
-        <div v-show="selection === 'attending'">
-            <h2 class="text-xl font-bold mb-4">Attending</h2>
-            <x-card.wrapper>
-                <x-card.plan />
-            </x-card.wrapper>
-        </div>
-        <div v-show="selection === 'attended'">
-            <h2 class="text-xl font-bold mb-4">Attended</h2>
-            <x-card.wrapper>
-                <x-card.plan />
-                <x-card.plan />
-                <x-card.plan />
-                <x-card.plan />
-            </x-card.wrapper>
-        </div> --}}
-    </div>
+    @endif
 </div>

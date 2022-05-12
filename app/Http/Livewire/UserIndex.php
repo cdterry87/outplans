@@ -8,6 +8,7 @@ use Livewire\Component;
 class UserIndex extends Component
 {
     public $user;
+    public $private = false;
 
     public function mount(User $user)
     {

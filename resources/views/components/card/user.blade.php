@@ -19,7 +19,7 @@
             />
             <div class="text-center">
                 <a
-                    href="#"
+                    href="{{ route('user', $user->id) }}"
                     class="font-bold text-lg"
                 >
                     {{ $user->name }}

@@ -175,4 +175,29 @@ class User extends Authenticatable
     {
         return Carbon::parse($value)->toFormattedDateString();
     }
+
+    public function getPublicPlans()
+    {
+        return $this->plans()
+            ->where('published', '!=', null)
+            ->where('start_datetime', '>=', Carbon::now())
+            ->where(function ($query) {
+                // Get only the plans set to 'P' for Public 
+                $query->where('privacy', 'P');
+                // or get plans of friends that are set to 'F' for Friends Only
+                $query->orWhere(function ($subquery) {
+                    $subquery->where('privacy', 'F');
+                    $subquery->whereIn('user_id', Friend::select('friend_user_id')->where('user_id', auth()->id()));
+                });
+            })
+            ->orderBy('start_datetime')
+            ->get();
+    }
+
+    public function isFriend()
+    {
+        return Friend::where('user_id', auth()->user()->id)
+            ->where('friend_user_id', $this->id)
+            ->exists();
+    }
 }
